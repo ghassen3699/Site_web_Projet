@@ -1,0 +1,15 @@
+
+
+
+
+
+
+<p> Est Ce Que Vous Sur ? {{fichier}}</p>
+
+<form action = '{% url 'supprimer_fichier'  fichier.id %}' method='POST'>
+
+    {% csrf_token %}
+
+    <a href="{% url 'fichiers_des_operations' %}">Non .</a>
+    <input type='submit', name='confirmation'>
+</form>  
