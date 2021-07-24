@@ -177,7 +177,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 
-##################################### les fonctions pour envoyer un mail avec django ############################################
+##################################### tous les fonctions pour envoyer un mail avec django ############################################
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
