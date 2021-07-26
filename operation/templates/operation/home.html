@@ -113,7 +113,52 @@
             <div class="col">
                 <div class="card card-body">
                     <form method = 'GET'>
-                        {{filter.form}}
+                        <tr>
+                            <th>
+                                <label for="id_nom_operation">Le nom de l&#x27;operation:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="nom_operation" id="id_nom_operation">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_date_operation">La date de l&#x27;operation:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="date_operation" value="" id="id_date_operation">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_nombre_des_migrants">Le nombres des migrants:</label>
+                            </th>
+                            <td>
+                                <input type="number" name="nombre_des_migrants" value="" step="any" id="id_nombre_des_migrants">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>    
+                                <label for="id_nombre_des_agents">Le nombres des agents:</label>
+                            </th>
+                            <td>
+                                <input type="number" name="nombre_des_agents" step="any" id="id_nombre_des_agents">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th>
+                                <label for="id_region">Region:</label>
+                            </th>
+                            <td>
+                                <select name="region" id="id_region">
+                                    <option value="" selected>---------</option>
+                                    <option value="1">ben arous</option>
+
+                                </select>
+                            </td>
+                        </tr>
                         <button type="submit">Recherche</button>
         
                     </form>
