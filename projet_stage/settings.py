@@ -167,10 +167,11 @@ STATIC_URL = '/static/'
 
 
 # definir le nouveau modele User avant les modifications
+############################################################################################################################
 AUTH_USER_MODEL = 'accounts.CustomUser'
+############################################################################################################################
 
-
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
@@ -189,8 +190,8 @@ EMAIL_HOST_PASSWORD = " mots de passe de l'adresse mail "
 
 
 
-
+######################################### Intialiser les fichiers static pour le design du site web ####################################
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
+#########################################################################################################################################
