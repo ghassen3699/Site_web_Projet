@@ -65,11 +65,16 @@ def home_page(request) :
     fichier_operation_plus_recente = models.Fichier_Operation.objects.order_by('du')[0:4]
     nombre_des_operations_terminer = operation.models.OperationTerminer.objects.count()
     operations_terminer = operation.models.OperationTerminer.objects.order_by('date_operation')
+    prenom_agent = request.user.agent.prenom
+    nom_agent = request.user.agent.nom
     return render(request,'accounts/home.html',{
         'nombre_des_operations_terminer':nombre_des_operations_terminer ,
         'operations_terminer':operations_terminer,
         'nombre_fichiers_operations' : nombre_fichiers_operations ,
-        'fichier_operation_plus_recente' : fichier_operation_plus_recente ,}
+        'fichier_operation_plus_recente' : fichier_operation_plus_recente ,
+        'agent_nom' : nom_agent ,
+        'agent_prenom' : prenom_agent
+        ,}
     )
 
 

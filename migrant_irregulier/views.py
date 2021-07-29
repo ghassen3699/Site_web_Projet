@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.http import response
 from django.shortcuts import redirect, render
 from . import models
@@ -5,6 +6,7 @@ from . import forms
 from django.contrib.auth.decorators import login_required
 import csv
 from django.http import HttpResponse
+from . import filters
 
 
 @login_required(login_url='login')
@@ -24,7 +26,14 @@ def ajouter_migrant(request) :
 @login_required(login_url='login')
 def home(request) :
     migrants = models.MigrantIrregulier.objects.all()
-    return render(request,'migrant_irregulier/home.html',{'migrants':migrants})
+    filter = filters.MigrantFilter(request.GET,queryset=migrants)
+    migrants = filter.qs
+    prenom_agent = request.user.agent.prenom
+    nom_agent = request.user.agent.nom
+    return render(request,'migrant_irregulier/home.html',{'migrants':migrants ,
+                                                           'agent_nom':nom_agent,
+                                                           'filter':filter,
+                                                           'agent_prenom':prenom_agent})
 
 
 
@@ -70,7 +79,7 @@ def export_fichier_csv(request) :
     for Migrant in models.MigrantIrregulier.objects.all().values_list('nom','prenom','age','numero_cin','numero_passport','sexe','numero_telephone','nationalite','operation','capter_date') :
         writer.writerow(Migrant)
 
-    response['Content-Disposition'] = 'attachement; filename = "test.csv" '
+    response['Content-Disposition'] = 'attachement; filename = "fichier des migrants.csv" '
 
     return response
 

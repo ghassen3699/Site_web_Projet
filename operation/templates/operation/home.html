@@ -52,7 +52,7 @@
     
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">La Garde Nationale</a>
+                <a class="navbar-brand" href="{% url 'account_home' %}">La Garde Nationale</a>
                 <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -60,7 +60,7 @@
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                            <a class="nav-link active" aria-current="page" href="#"></a>
                             
                         </li>
                         <li class="nav-item">
@@ -76,10 +76,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                                <li><a class="dropdown-item" href="#">Envoyer Mail</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
+                                <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fiche Des Operations</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Un Migrant</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
+                            
                         </li>
                     </ul>
                     
@@ -94,7 +96,7 @@
 
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <p class="nav-link " aria-current="page">Dashboard</p>
+                <p class="nav-link active" aria-current="page">{{agent_nom}} {{agent_prenom}}</p>
                 <a class="nav-link active" href="{% url 'operation_home' %}">
                     Les Operations
                     <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>

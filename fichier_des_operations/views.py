@@ -20,7 +20,11 @@ def home(request) :
     fichiers = models.Fichier_Operation.objects.all()
     filter = filters.FichierFilter(request.GET, queryset=fichiers)
     fichiers = filter.qs
-    return render(request,'fichier_des_operations/home.html',{'fichiers':fichiers,'filter':filter})
+
+    
+    prenom_agent = request.user.agent.prenom
+    nom_agent = request.user.agent.nom
+    return render(request,'fichier_des_operations/home.html',{'fichiers':fichiers,'filter':filter, 'agent_nom':nom_agent, 'agent_prenom':prenom_agent})
 
 
 

@@ -10,8 +10,10 @@ def home(request) :
     operations = models.OperationTerminer.objects.all()
     filter = filters.OperationFilter(request.GET, queryset=operations)
     operations = filter.qs
+    prenom_agent = request.user.agent.prenom
+    nom_agent = request.user.agent.nom
 
-    return render(request,'operation/home.html',{'operations':operations,'filter':filter})
+    return render(request,'operation/home.html',{'operations':operations,'filter':filter , 'agent_nom':nom_agent, 'agent_prenom':prenom_agent})
 
 
 
