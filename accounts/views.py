@@ -62,9 +62,9 @@ def logout_page(request) :
 @login_required(login_url='login')
 def home_page(request) :
     nombre_fichiers_operations = models.Fichier_Operation.objects.count()
-    fichier_operation_plus_recente = models.Fichier_Operation.objects.order_by('du')[0:4]
+    fichier_operation_plus_recente = models.Fichier_Operation.objects.order_by('-du')[:5]
     nombre_des_operations_terminer = operation.models.OperationTerminer.objects.count()
-    operations_terminer = operation.models.OperationTerminer.objects.order_by('date_operation')
+    operations_terminer = operation.models.OperationTerminer.objects.order_by('-date_operation')[:5]
     prenom_agent = request.user.agent.prenom
     nom_agent = request.user.agent.nom
     return render(request,'accounts/home.html',{

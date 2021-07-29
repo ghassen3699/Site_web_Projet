@@ -1,16 +1,283 @@
+<!doctype html>
+
+
+{% load static %}
+
+<html lang="en">
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.83.1">
+        <title>La Garde Nationale</title>
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+    
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+        <link href="{% static 'css/form-validation.css' %}" rel="stylesheet">
+
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+                }
+            }
+        </style>
+    
+        <!-- Custom styles for this template -->
+        
+    </head>
+
+    
+    <body class="bg-light">
+
+        
+    
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'account_home' %}">La Garde Nationale</a>
+                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#"></a>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Creer Compte</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">Ajouter Operation</a></li>
+                                <li><a class="dropdown-item" href="#">Ajouter Une Fiche Des Operations</a></li>
+                                <li><a class="dropdown-item" href="#">Ajouter Un Migrant</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
 
 
 
 
 
 
+        <div class="nav-scroller bg-body shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <p class="nav-link active" aria-current="page">{{nom_agent}} {{prenom_agent}}</p>
+                <a class="nav-link" href="{% url 'operation_home' %}">
+                    Mes Operations
+                    <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>
+                </a>
+                <a class="nav-link" href="{% url 'fichiers_des_operations' %}">
+                    Les Fichiers des Operations
+                    <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_fichiers_operations}}</span>
+                </a>
+                <a class="nav-link" href="{% url 'page_home_migrant' %}">Les Migrants Irreguliers</a>
+                
+            </nav>
+        </div>
 
-{{profile_infos.nom}}
-{{profile_infos.prenom}}
-{{profile_infos.age}}
-{{profile_infos.numero_telephone}}
-{{profile_infos.sexe}}
-{{profile_infos.grade_de_travail_fk}}
-{{profile_infos.lieu_de_travail_fk}}
-{{profile_infos.numero_cin}}
-{{profile_infos.copie_cin}}
+
+        
+    
+        <div class="container">
+            <main>
+                <div class="py-5 text-center">
+                    <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+                    <h2>{{prenom_agent}} {{nom_agent}}</h2>
+                    <p class="lead">{{profile_infos.grade_de_travail_fk}}</p>
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            
+                            <span class="text-primary">Mes Operations</span>
+                            <span class="badge bg-primary rounded-pill">{{operation_user_nombre}}</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            {% for operation in  operation_user%}
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div>
+                                    <h6 class="my-0"> <a href="{% url 'modifier_operation' operation.id %}" style="text-decoration:none">{{operation}} </a> </h6>
+                                    
+                                </div>
+                                
+                            </li>
+                            {% endfor %}
+                            
+                        </ul>
+
+                        
+                    </div>
+                
+                
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-3">Mes Informations</h4>
+                        <form class="needs-validation" novalidate>
+                            <div class="row g-3">
+                            
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Le Prenom</label>
+                                    {{form.prenom}}
+                                    <div class="invalid-feedback">
+                                        Creer Le Prenom Correctement .
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Le Nom</label>
+                                    {{form.nom}}
+                                    <div class="invalid-feedback">
+                                        Creer Le Nom Correctement.
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="username" class="form-label">L'age</label>
+                                    <div class="input-group has-validation">
+                                        
+                                        {{form.age}}
+                                        <div class="invalid-feedback">
+                                            Creer L'age Correctement.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Le Numero Telephone</label>
+                                    {{form.numero_telephone}}
+                                    <div class="invalid-feedback">
+                                        Entrer Le Numero Telephone Correctement .
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="address2" class="form-label">Le Sexe </label>
+                                    {{form.sexe}}
+                                </div>
+
+                                <div class="col-md-5">
+                                    <label for="country" class="form-label">Le Grade De Travail</label>
+                                    {{form.grade_de_travail_fk}}
+                                
+                                </div>
+                                
+                                <div class="col-md-5">
+                                    <label for="country" class="form-label">Le Lieu De Travail</label>
+                                    {{form.lieu_de_travail_fk}}
+                                
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Le Numero CIN</label>
+                                    {{form.numero_cin}}
+                                    <div class="invalid-feedback">
+                                        Entrer Le Numero CIN Correctement .
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="address" class="form-label">L'Adresse</label>
+                                    {{form.adresse}}
+                                    <div class="invalid-feedback">
+                                        Entrer L'adresse Correctement.
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Le Code Postal</label>
+                                    {{form.code_postal}}
+                                    <div class="invalid-feedback">
+                                        Entrer Le Code Postal Correctement .
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+                            <hr class="my-4">
+
+                            
+
+                            <div class="form-check">
+                                <label class="form-check-label" for="save-info">Desole Monsieur {{prenom_agent}} Mais T'as Pas Le Droit De Modifier Les Informations</label>
+                            </div>
+
+                            <hr class="my-4">
+
+                            
+
+                            
+
+                            <hr class="my-4">
+
+                            
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; 2021 La Garde Nationale</p>
+                <ul class="list-inline">
+                
+                </ul>
+            </footer>
+        </div>
+
+
+
+
+
+        
+
+
+        
+
+
+    
+    
+    
+    
+        <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+        <script src="{% static 'js/offcanvas.js'%}"></script>
+        <script src="{% static 'js/form-validation.js'%}"></script>
+        
+    </body>
+
+
+</html>
+

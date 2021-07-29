@@ -15,6 +15,8 @@ class Agent(models.Model) :
     prenom = models.CharField(max_length=50)
     age = models.IntegerField()
     numero_telephone = models.CharField(max_length=8)
+    adresse = models.CharField(max_length=200)
+    code_postal = models.CharField(max_length=5)
     SEXE = (
         ('Homme', 'Homme'),
         ('Femme', 'Femme'),

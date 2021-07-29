@@ -122,48 +122,49 @@
 
         <br>
         <h2>Les Migrants Irreguliers :</h2>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                        <th>nom </th>
-                        <th>prenom</th>
-                        <th>age</th>
-                        <th>n°CIN</th>
-                        <th>N°Passport</th>
-                        <th>Sexe </th>
-                        <th>N°Telephone</th>
-                        <th>Nationalite</th>
-                        <th>Operation</th>
-                        <th>Date de Capter</th>
-                        <th>Telecharger (.csv)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                    <th>nom </th>
+                    <th>prenom</th>
+                    <th>age</th>
+                    <th>n°CIN</th>
+                    <th>N°Passport</th>
+                    <th>Sexe </th>
+                    <th>N°Telephone</th>
+                    <th>Nationalite</th>
+                    <th>Operation</th>
+                    <th>Date de Capter</th>
+                    <th>Telecharger (.csv)</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                        {% for migrant in  migrants %}
+                    {% for migrant in  migrants %}
 
-                            
-                            <tr>
-                            <td>{{migrant.nom}} </td>
-                            <td>{{migrant.prenom}}</td>
-                            <td>{{migrant.age}}</td>
-                            <td>{{migrant.numero_cin}} </td>
-                            <td>{{migrant.numero_passport}} </td>
-                            <td>{{migrant.sexe}} </td>
-                            <td>{{migrant.numero_telephone}} </td>
-                            <td>{{migrant.nationalite}} </td>
-                            <td> {% for operation in migrant.operation.all %} - {{operation}}<br> {% endfor %}</td>
-                            <td>{{migrant.capter_date}} </td>
-                            <td><a href="{% url 'telecharger' %}">Telecharger</td>
-                            </tr>
-                            
                         
-                        {% endfor %}
+                        <tr>
+                        <td>{{migrant.nom}} </td>
+                        <td>{{migrant.prenom}}</td>
+                        <td>{{migrant.age}}</td>
+                        <td>{{migrant.numero_cin}} </td>
+                        <td>{{migrant.numero_passport}} </td>
+                        <td>{{migrant.sexe}} </td>
+                        <td>{{migrant.numero_telephone}} </td>
+                        <td>{{migrant.nationalite}} </td>
+                        <td> {% for operation in migrant.operation.all %} - {{operation}}<br> {% endfor %}</td>
+                        <td>{{migrant.capter_date}} </td>
+                        <td><a href="{% url 'telecharger' %}">Telecharger</td>
+                        </tr>
+                        
+                    
+                    {% endfor %}
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
+        
         
 
     
