@@ -22,8 +22,8 @@ class Agent(models.Model) :
         ('Femme', 'Femme'),
         )
     sexe = models.CharField(max_length=30,choices=SEXE) 
-    grade_de_travail_fk = models.OneToOneField(GradeDeTravail,on_delete=models.CASCADE)
-    lieu_de_travail_fk = models.OneToOneField(Lieu_De_Travail,on_delete=models.CASCADE)
+    grade_de_travail_fk = models.ForeignKey(GradeDeTravail,on_delete=models.CASCADE)
+    lieu_de_travail_fk = models.ForeignKey(Lieu_De_Travail,on_delete=models.CASCADE)
     numero_cin = models.CharField(max_length=8)
     copie_cin = models.ImageField()
     

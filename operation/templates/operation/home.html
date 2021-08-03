@@ -14,7 +14,7 @@
         <meta name="description" content="">
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Hugo 0.83.1">
-        <title>Sidebars · Bootstrap v5.0</title>
+        <title>La Garde Nationale</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -109,64 +109,67 @@
                 
             </nav>
         </div>
+
         
+        
+        <nav class="navbar" aria-label="First navbar example">
+            
+            <div class="container-fluid">
+                <p></p>
+                <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation" href="">
+                    Filtrer<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+                </a>
 
-        <div class="row">
-            <div class="col">
-                <div class="card card-body">
-                    <form method = 'GET'>
-                        <tr>
-                            <th>
-                                <label for="id_nom_operation">Le nom de l&#x27;operation:</label>
-                            </th>
-                            <td>
-                                <input type="text" name="nom_operation" id="id_nom_operation">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="id_date_operation">La date de l&#x27;operation:</label>
-                            </th>
-                            <td>
-                                <input type="text" name="date_operation" value="" id="id_date_operation">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="id_nombre_des_migrants">Le nombres des migrants:</label>
-                            </th>
-                            <td>
-                                <input type="number" name="nombre_des_migrants" value="" step="any" id="id_nombre_des_migrants">
-                            </td>
-                        </tr>
+                
+                <div class="collapse navbar-collapse" id="navbarsExample01">
+                    <ul class="navbar-nav me-auto mb-2">
+                        <form method = 'GET'>
 
-                        <tr>
-                            <th>    
-                                <label for="id_nombre_des_agents">Le nombres des agents:</label>
-                            </th>
-                            <td>
-                                <input type="number" name="nombre_des_agents" step="any" id="id_nombre_des_agents">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <th>
+                            <li class="nav-item">
+                                <label for="id_nom_operation" class="form-label">Le nom de l&#x27;operation:</label>
+                    
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="nom_operation" id="id_nom_operation">
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <label for="id_date_operation" class="form-label">La date de l&#x27;operation:</label>
+                    
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="date_operation" value="" id="id_date_operation">
+                                </div>
+                            </li>
+
+
+
+
+                            <li class="nav-item">
                                 <label for="id_region">Region:</label>
-                            </th>
-                            <td>
-                                <select name="region" id="id_region">
-                                    <option value="" selected>---------</option>
-                                    <option value="1">ben arous</option>
 
-                                </select>
-                            </td>
-                        </tr>
-                        <button type="submit">Recherche</button>
-        
-                    </form>
+                                <div class="col-sm-6">
+                                    <select name="region" id="id_region" class="form-control ">
+                                        <option value="" selected>---------</option>
+                                        <option value="1">ben arous</option>
+
+                                    </select>
+                                </div>
+                                    
+                                <br>
+                                <button type="submit" class="btn btn-primary">Recherche</button>
+                
+                            </li>
+                            
+                        </form>
+                    </ul>
+                        
                 </div>
             </div>
-        </div>
+        </nav>
+    
+
+        
+        <div class="b-example-divider"></div>
 
         
         <br>

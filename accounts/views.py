@@ -6,7 +6,7 @@ from django.conf import settings
 from django.template.loader import render_to_string 
 from projet_stage import settings
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 
 
@@ -35,9 +35,11 @@ def signup(request) :
                 [email] ,
             )
             email.send(fail_silently=False)
+            messages.success(request,"Le Compte Est Creer , Verifier S'il Vous Plais L'adresse Mail ")
             return redirect('account_home')                       # retourner automatiquement a la page principale du compte 
        
         else :
+            messages.warning(request,"L'adresse Mail Ou Le Mots De Passe Est Mal Creer")
             return render(request,'accounts/signup.html',{'form':form})                     # si on a un probleme au niveau de la formulaire , retourner la meme page 
     return render(request,'accounts/signup.html',{'form':form})                             # si la methode le requete est GET on affiche la meme page 
 #########################################################################################################################################################
@@ -65,6 +67,7 @@ def home_page(request) :
     fichier_operation_plus_recente = models.Fichier_Operation.objects.order_by('-du')[:5]
     nombre_des_operations_terminer = operation.models.OperationTerminer.objects.count()
     operations_terminer = operation.models.OperationTerminer.objects.order_by('-date_operation')[:5]
+    
     prenom_agent = request.user.agent.prenom
     nom_agent = request.user.agent.nom
     return render(request,'accounts/home.html',{
