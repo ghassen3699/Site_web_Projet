@@ -1,5 +1,5 @@
 from django.db import models
-from operation.models import OperationTerminer
+
 
 
 
@@ -34,7 +34,6 @@ class MigrantIrregulier(models.Model) :
     nationalite = models.ForeignKey(Nationalite,on_delete=models.CASCADE)
 
 
-    operation = models.ManyToManyField(OperationTerminer)
     capter_date = models.DateField()
     description = models.TextField(blank=True)
 

@@ -75,9 +75,9 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item" href="#">Ajouter Operation</a></li>
-                                <li><a class="dropdown-item" href="#">Ajouter Une Fiche Des Operations</a></li>
-                                <li><a class="dropdown-item" href="#">Ajouter Un Migrant</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
+                                <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fichier Des Operations</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Un Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>
@@ -86,6 +86,7 @@
                 </div>
             </div>
         </nav>
+
 
 
 

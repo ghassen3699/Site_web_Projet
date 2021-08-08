@@ -56,3 +56,48 @@ def supprimer_operation(request, pk) :
     return render(request,'operation/supprimer_operation.html',{'operation':operation})
 
 
+
+
+
+
+
+def statistique(request) :
+    
+    liste = {}
+    les_operation = models.OperationTerminer.objects.all()         # tous les operations
+    le_nombre_des_operations = les_operation.count()     #  le nombre des operations
+    les_regions_des_operations = models.OperationTerminer.objects.values_list('region_id')            # tous les region des operations 
+
+    les_regions = models.Region.objects.values_list('id')
+
+    r = 1
+    for x in les_regions :
+        compteur = 0
+        '''
+        for o in range(le_nombre_des_operations) :
+            if x == les_regions_des_operations[o] :
+                compteur += 1
+
+        region = models.Region.objects.get(id = r)
+        liste[region] = compteur
+        '''
+
+        les_operations_par_region = models.OperationTerminer.objects.all().filter(region_id = r).count()
+        region = models.Region.objects.get(id = r)
+        liste[region] = [les_operations_par_region]
+        r += 1
+        
+    
+
+    '''
+    liste = []
+    for operation in les_regions :
+        les_regions = operation.region
+        liste.append(les_regions)
+    '''
+
+
+    return render(request,'operation/statistique.html',{'liste':liste,'les_operations_par_region':les_operations_par_region})
+
+
+
