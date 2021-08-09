@@ -1,3 +1,5 @@
+from lieu_de_travail.models import Region
+from django.db.models.aggregates import Count
 from django.shortcuts import redirect, render
 from . import models, forms
 from django.contrib.auth.decorators import login_required
@@ -59,45 +61,38 @@ def supprimer_operation(request, pk) :
 
 
 
-
-
-def statistique(request) :
-    
-    liste = {}
-    les_operation = models.OperationTerminer.objects.all()         # tous les operations
-    le_nombre_des_operations = les_operation.count()     #  le nombre des operations
-    les_regions_des_operations = models.OperationTerminer.objects.values_list('region_id')            # tous les region des operations 
-
-    les_regions = models.Region.objects.values_list('id')
-
-    r = 1
-    for x in les_regions :
-        compteur = 0
-        '''
-        for o in range(le_nombre_des_operations) :
-            if x == les_regions_des_operations[o] :
-                compteur += 1
-
-        region = models.Region.objects.get(id = r)
-        liste[region] = compteur
-        '''
-
-        les_operations_par_region = models.OperationTerminer.objects.all().filter(region_id = r).count()
-        region = models.Region.objects.get(id = r)
-        liste[region] = [les_operations_par_region]
-        r += 1
-        
-    
-
-    '''
+@login_required(login_url='login')
+def afficher_operation_par_region(request) :
+    liste_des_regions_id = []
+    liste_des_region = []
+    dictionnaire = {}
     liste = []
-    for operation in les_regions :
-        les_regions = operation.region
-        liste.append(les_regions)
-    '''
 
+    regions = models.Region.objects.all().values('id')
+    nombre_des_regions = regions.count()
+    operations = models.OperationTerminer.objects.all()
+    nombre_des_operations = operations.count()
 
-    return render(request,'operation/statistique.html',{'liste':liste,'les_operations_par_region':les_operations_par_region})
+    x = 1 
+    while x <= nombre_des_regions :
+        liste_des_regions_id.append(x)
+        x += 1
 
+    for i in liste_des_regions_id :
+        nom_region = models.Region.objects.get(id = i)
+        liste_des_region.append(nom_region.nom_region)
+    
 
+    les_operations = models.OperationTerminer.objects.all()
+    for i in liste_des_regions_id :
+        operations = models.OperationTerminer.objects.filter(region_id = i)
+        nombre_des_operations = operations.count()
 
+        nom = models.Region.objects.get(id = i)
+        dictionnaire['nom_region'] = nom
+        dictionnaire['nombre_des_operations'] = nombre_des_operations
+
+        liste.append(dict(dictionnaire))
+
+    
+    return render(request,'operation/statistique.html',{'liste':liste})

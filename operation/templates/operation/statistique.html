@@ -1,4 +1,12 @@
 
-{{liste}}
 
-{{les_operations_par_region}}
+
+<br>
+{% for l in liste %}
+
+    {{l.nom_region}}
+    {{l.nombre_des_operations}}<br>
+
+{% endfor %}
+
+

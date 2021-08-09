@@ -25,8 +25,3 @@ class OperationTerminer(models.Model) :
 
 
 
-
-
-class Operation_Par_Region(models.Model) :
-    region_fk = models.ForeignKey(Region,on_delete=models.CASCADE)
-    operation = models.ForeignKey(OperationTerminer,on_delete=models.CASCADE)
