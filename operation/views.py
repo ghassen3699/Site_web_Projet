@@ -44,7 +44,7 @@ def modifier_operation(request,pk) :
         if form.is_valid() :
             form.save()
             return redirect('operation_home')
-    return render(request,'operation/creer_operation.html',{'form':form})
+    return render(request,'operation/modifier_operation.html',{'form':form})
 
 
 
@@ -88,9 +88,12 @@ def afficher_operation_par_region(request) :
         operations = models.OperationTerminer.objects.filter(region_id = i)
         nombre_des_operations = operations.count()
 
+        
+        
         nom = models.Region.objects.get(id = i)
         dictionnaire['nom_region'] = nom
         dictionnaire['nombre_des_operations'] = nombre_des_operations
+        dictionnaire['les_operations'] = operations
 
         liste.append(dict(dictionnaire))
 

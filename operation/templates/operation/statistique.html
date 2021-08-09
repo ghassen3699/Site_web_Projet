@@ -5,7 +5,13 @@
 {% for l in liste %}
 
     {{l.nom_region}}
-    {{l.nombre_des_operations}}<br>
+    {{l.nombre_des_operations}}
+
+    {% for o in l.les_operations %}
+        {{o.nom_operation}}
+    
+    {% endfor %}
+    <br>
 
 {% endfor %}
 

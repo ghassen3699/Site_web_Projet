@@ -15,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Hugo 0.83.1">
-        <title>Sidebars · Bootstrap v5.0</title>
+        <title>La Garde Nationale</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -65,10 +65,11 @@
                             
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Notifications</a>
+                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            <a class="nav-link" href="{% url 'statistique' %}">Les Statistiques</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Creer Compte</a>
@@ -79,7 +80,6 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
                                 <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
                                 <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fichier Des Operations</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Un Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>
@@ -173,6 +173,7 @@
                         <th>Jusqu'a</th>
                         <th>Les Operation</th>
                         <th>Telecharger (.csv)</th>
+                        <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -181,10 +182,11 @@
 
                             
                             <tr>
-                            <td>{{fichier.du}} </td>
+                            <td><a href="{% url 'modifier_fichier' fichier.id%}">{{fichier.du}} </a></td>
                             <td>{{fichier.jusqu_a}}</td>
                             <td> {% for operation in fichier.operation.all %} - {{operation}} <br> {% endfor %} </td>
                             <td><a href="#">Telecharger</td>
+                            <td><a href="{% url 'supprimer_fichier' fichier.id %}">Supprimer</td>
                             </tr>
 
                         

@@ -64,10 +64,11 @@
                             
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Notifications</a>
+                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            <a class="nav-link" href="{% url 'statistique' %}">Les Statistiques</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Creer Compte</a>
@@ -78,7 +79,6 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
                                 <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
                                 <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fichier Des Operations</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Un Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>
@@ -127,7 +127,7 @@
                 
                     <div class="col-md-7 col-lg-11">
                         <h4 class="mb-3">La Date Des Operations</h4>
-                        <form class="needs-validation" novalidate>
+                        <form method = "POST" class="needs-validation" novalidate>
                             <div class="row g-3">
                             
                                 <div class="col-12">
@@ -165,17 +165,15 @@
 
                             
 
-                            <div class="form-check">
-                                <label class="form-check-label" for="save-info">button D'envoyer</label>
+                            <div class="py-5 text-center">
+                                <button type="submit" class="btn btn-secondary btn-lg text-center">Ajouter</button>
+                                <hr class="my-3">
+                               
                             </div>
-
-                            <hr class="my-4">
-
-                            
+                            {% csrf_token %}
+                           
 
                             
-
-                            <hr class="my-4">
 
                             
                         </form>

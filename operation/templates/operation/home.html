@@ -15,7 +15,6 @@
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Hugo 0.83.1">
         <title>La Garde Nationale</title>
-
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
     
@@ -64,10 +63,11 @@
                             
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Notifications</a>
+                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            <a class="nav-link" href="{% url 'statistique' %}">Les Statistiques</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Creer Compte</a>
@@ -78,7 +78,6 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
                                 <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
                                 <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fichier Des Operations</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Un Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>
@@ -151,6 +150,7 @@
                                     <select name="region" id="id_region" class="form-control" multiple>
                                         <option value="" selected>---------</option>
                                         <option value="1">ben arous</option>
+                                        <option value="2">El Kef</option>
 
                                     </select>
                                 </div>
@@ -183,6 +183,7 @@
                     <th>Nombres des migrants</th>
                     <th>Nombre des Agents</th>
                     <th>Region-Province-Commissariat</th>
+                    <th></th>
                     
                     </tr>
                 </thead>
@@ -197,6 +198,7 @@
                         <td>{{operation.nombre_des_migrants}}</td>
                         <td>{{operation.nombre_des_agents}}</td>
                         <td>{{operation.region}} - {{operation.province}} - {{operation.commissariat}}</td>
+                        <td> <a href="{% url 'supprimer_operation' operation.id %}">Supprimer</a>  </td>
                         </tr>
 
                     

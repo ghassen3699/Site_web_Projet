@@ -59,7 +59,7 @@ def modifier_fichier_operation(request,pk) :
         if form.is_valid() :
             form.save()
             return redirect('fichiers_des_operations')
-    return render(request,'fichier_des_operations/fichier_operation.html',{'form':form})
+    return render(request,'fichier_des_operations/modifier_fichier_des_operations.html',{'form':form})
 
 
 
