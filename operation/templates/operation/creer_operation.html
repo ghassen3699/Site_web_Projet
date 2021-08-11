@@ -121,12 +121,9 @@
                 </div>
 
                 <div class="row g-5">
-                    
-                
-                
                     <div class="col-md-7 col-lg-11">
                         <h4 class="mb-3">Lieu De L'operation</h4>
-                        <form class="needs-validation" novalidate>
+                        <form method = "POST" class="needs-validation" novalidate>
                             <div class="row g-3">
                             
                                 <div class="col-sm-6">
@@ -174,16 +171,6 @@
                                     </div>
                                 </div>
 
-                                <h4 class="mb-3">Les Informations Des Agents</h4>
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Le Nombre Des Agents :</label>
-                                    {{form.nombre_des_agents}}
-                                    <div class="invalid-feedback">
-                                        Entrer Le Nombre Des Agents Correctement .
-                                    </div>
-                                </div>
-                                
                                 
                                 <h4 class="mb-3">Les Informations Des Migrants</h4>
                                 <div class="col-12">
@@ -193,9 +180,11 @@
                                         Entrer Le Nombre Des Migrants Correctement .
                                     </div>
                                 </div>
-                                
-                                
                             </div>
+
+
+                            
+                            
 
                             <hr class="my-4">
 
@@ -217,6 +206,14 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="row g-3">
+                    <form method = "POST">
+                        {{form_migrant}}
+
+                    </form>
+                </div>
+                
             </main>
 
             <footer class="my-5 pt-5 text-muted text-center text-small">

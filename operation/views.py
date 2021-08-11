@@ -3,10 +3,9 @@ from django.db.models.aggregates import Count
 from django.shortcuts import redirect, render
 from . import models, forms
 from django.contrib.auth.decorators import login_required
-from .filters import  OperationFilter
 from . import filters
 from migrant_irregulier.models import Nationalite
-
+from migrant_irregulier.forms import MigrantIrregulierForm
 
 @login_required(login_url='login')
 def home(request) :
@@ -24,14 +23,18 @@ def home(request) :
 @login_required(login_url='login')
 def creer_operations(request) :
     form = forms.OperationTerminerForm()
+    form_migrant = MigrantIrregulierForm()
     if request.method == 'POST' :
         form = forms.OperationTerminerForm(request.POST)
+        form_migrant = MigrantIrregulierForm(request.POST)
         if form.is_valid() :
-            form.save()
-            return redirect('operation_home')
+            if form_migrant.is_valid() :
+                form.save()
+                form_migrant.save()
+                return redirect('operation_home')
         else :
-            return render(request,'operation/creer_operation.html',{'form':form})
-    return render(request,'operation/creer_operation.html',{'form':form})
+            return render(request,'operation/creer_operation.html',{'form':form,'form_migrant':form_migrant})
+    return render(request,'operation/creer_operation.html',{'form':form,'form_migrant':form_migrant})
 
 
 

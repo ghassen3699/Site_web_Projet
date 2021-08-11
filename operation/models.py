@@ -7,7 +7,6 @@ class OperationTerminer(models.Model) :
 
     nom_operation = models.CharField(max_length=200,verbose_name="le nom de l'operation",blank=True,unique=True)
     date_operation = models.DateField(verbose_name="la date de l'operation")
-    nombre_des_agents = models.IntegerField(verbose_name="le nombres des agents")
     nombre_des_migrants = models.IntegerField(verbose_name="le nombres des migrants")
     region = models.ForeignKey(Region,on_delete=models.CASCADE)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
