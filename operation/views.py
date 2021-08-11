@@ -5,6 +5,7 @@ from . import models, forms
 from django.contrib.auth.decorators import login_required
 from .filters import  OperationFilter
 from . import filters
+from migrant_irregulier.models import Nationalite
 
 
 @login_required(login_url='login')
@@ -61,9 +62,14 @@ def supprimer_operation(request, pk) :
 
 
 
+
+
+
+
 @login_required(login_url='login')
 def afficher_operation_par_region(request) :
     liste_des_regions_id = []
+    liste_des_nationalite_id = []
     liste_des_region = []
     dictionnaire = {}
     liste = []
@@ -71,31 +77,87 @@ def afficher_operation_par_region(request) :
     regions = models.Region.objects.all().values('id')
     nombre_des_regions = regions.count()
     operations = models.OperationTerminer.objects.all()
-    nombre_des_operations = operations.count()
+    
+
+
+    nombre_nationalites = Nationalite.objects.all().values('id').count()
+
+    y = 1 
+    while y <= nombre_nationalites :
+        liste_des_nationalite_id.append(y)
+        y += 1
+    
+
 
     x = 1 
     while x <= nombre_des_regions :
         liste_des_regions_id.append(x)
         x += 1
 
+    
+
     for i in liste_des_regions_id :
         nom_region = models.Region.objects.get(id = i)
         liste_des_region.append(nom_region.nom_region)
     
 
-    les_operations = models.OperationTerminer.objects.all()
+    
+
     for i in liste_des_regions_id :
         operations = models.OperationTerminer.objects.filter(region_id = i)
         nombre_des_operations = operations.count()
+        
 
+        # tester si il y'a des operations 
+        # 1 ) on a pas des operations dans cette region 
+        if nombre_des_operations == 0 :
+            pass
         
         
-        nom = models.Region.objects.get(id = i)
-        dictionnaire['nom_region'] = nom
-        dictionnaire['nombre_des_operations'] = nombre_des_operations
-        dictionnaire['les_operations'] = operations
+        # 2) on a des operations dans cette region
+        else :
+            operation_terre =  models.OperationTerminer.objects.filter(region_id = i,nature_operation='Terre').count()
+            operation_mer = models.OperationTerminer.objects.filter(region_id = i,nature_operation='Mer').count()
+            
+            les_migtunisiens = 0 
+            for x in operations :
+                les_migrants_tunisiens = models.MigrantIrregulier.objects.filter(operationterminer = x.id , nationalite_id = 1).count()
+                les_migtunisiens = les_migtunisiens + les_migrants_tunisiens
+                
 
-        liste.append(dict(dictionnaire))
+            nombre_des_migrants = 0
+
+            for migrant in operations.values('nombre_des_migrants') :
+                nombre_des_migrants = nombre_des_migrants + migrant['nombre_des_migrants']
+                
+            if nombre_des_migrants == 0 :
+                nom = models.Region.objects.get(id = i)
+                dictionnaire['nom_region'] = nom
+                dictionnaire['nombre_des_operations'] = nombre_des_operations
+                dictionnaire['les_operations'] = operations
+                dictionnaire['les_migrants_tunisien'] = nombre_des_migrants
+                dictionnaire['les_migrants_non_tunisien'] = nombre_des_migrants 
+                liste.append(dict(dictionnaire))
+            
+            
+            else :
+                nom = models.Region.objects.get(id = i)
+                dictionnaire['nom_region'] = nom
+                dictionnaire['nombre_des_operations'] = nombre_des_operations
+                dictionnaire['les_operations'] = operations
+                dictionnaire['les_migrants_tunisien'] = les_migtunisiens
+                dictionnaire['les_migrants_non_tunisien'] = nombre_des_migrants - les_migtunisiens
+                dictionnaire['operation_terre'] = operation_terre
+                dictionnaire['operation_mer'] = operation_mer
+                liste.append(dict(dictionnaire))
 
     
-    return render(request,'operation/statistique.html',{'liste':liste})
+    return render(request,'operation/ag_grid.html',{'liste':liste})
+
+
+
+
+
+def ag_grid_view(request) :
+    return render(request,'operation/ag_grid.html')
+
