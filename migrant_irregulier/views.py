@@ -7,9 +7,6 @@ from . import models
 from . import forms
 from django.contrib.auth.decorators import login_required
 
-from . import filters
-
-
 
 
 '''

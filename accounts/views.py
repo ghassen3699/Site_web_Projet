@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import  logout
 
 from django.core.mail import EmailMessage
 from django.conf import settings
-from django.template.loader import render_to_string 
+
 from projet_stage import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -14,7 +14,7 @@ from fichier_des_operations import forms, models
 import operation
 from . import forms
 
-
+'''
 # fonction signup 
 #######################################################################################################################################################
 @login_required(login_url='login')
@@ -43,7 +43,7 @@ def signup(request) :
             return render(request,'accounts/signup.html',{'form':form})                     # si on a un probleme au niveau de la formulaire , retourner la meme page 
     return render(request,'accounts/signup.html',{'form':form})                             # si la methode le requete est GET on affiche la meme page 
 #########################################################################################################################################################
-
+'''
 
 
 
@@ -68,16 +68,12 @@ def home_page(request) :
     nombre_des_operations_terminer = operation.models.OperationTerminer.objects.count()
     operations_terminer = operation.models.OperationTerminer.objects.order_by('-date_operation')[:5]
     
-    prenom_agent = request.user.agent.prenom
-    nom_agent = request.user.agent.nom
     return render(request,'accounts/home.html',{
         'nombre_des_operations_terminer':nombre_des_operations_terminer ,
         'operations_terminer':operations_terminer,
         'nombre_fichiers_operations' : nombre_fichiers_operations ,
         'fichier_operation_plus_recente' : fichier_operation_plus_recente ,
-        'agent_nom' : nom_agent ,
-        'agent_prenom' : prenom_agent
-        ,}
+        }
     )
 
 

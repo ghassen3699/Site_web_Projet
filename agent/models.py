@@ -17,11 +17,11 @@ class Agent(models.Model) :
     numero_telephone = models.CharField(max_length=8)
     adresse = models.CharField(max_length=200)
     code_postal = models.CharField(max_length=5)
-    SEXE = (
+    GENRE = (
         ('Homme', 'Homme'),
         ('Femme', 'Femme'),
         )
-    sexe = models.CharField(max_length=30,choices=SEXE) 
+    genre = models.CharField(max_length=30,choices=GENRE) 
     grade_de_travail_fk = models.ForeignKey(GradeDeTravail,on_delete=models.CASCADE)
     lieu_de_travail_fk = models.ForeignKey(Lieu_De_Travail,on_delete=models.CASCADE)
     numero_cin = models.CharField(max_length=8)

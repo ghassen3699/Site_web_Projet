@@ -71,6 +71,7 @@ def supprimer_fichier_operation(request,pk) :
 
 
 @api_view(['GET'])
+@login_required(login_url='login')
 def fichier_api(request) :
     les_fichiers = models.Fichier_Operation.objects.all()
     fichier_ser = serializers_Fichier(les_fichiers, many=True)

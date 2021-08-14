@@ -1,7 +1,5 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from . import forms
-from django.contrib import messages
 
 
 
@@ -27,18 +25,10 @@ def remplissage_donnees_agent(request) :
 
 
 
-
+@login_required(login_url='login')
 def profile_information(request) :
-    profile_infos = request.user.agent
     
-    form = forms.AgentForm(instance=profile_infos)
-    '''
-    if request.method == 'POST' :
-        form = forms.AgentForm(request.POST,instance=profile_information)
-        if form.is_valid() :
-            return redirect('account_home')
-    '''
-    return render(request,'agent/home_agent.html',{'form':form})
+    return render(request,'agent/home_agent.html')
 
 
 
