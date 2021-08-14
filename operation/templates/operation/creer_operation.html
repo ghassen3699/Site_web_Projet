@@ -11,8 +11,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Hugo 0.83.1">
+        <link rel="icon" type="image/png" href="{% static 'image/7.jpg'%}" />
         <title>La Garde Nationale</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
@@ -23,6 +22,7 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
         <link href="{% static 'css/form-validation.css' %}" rel="stylesheet">
+        <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
 
         <style>
             .bd-placeholder-img {
@@ -73,9 +73,9 @@
                             <a class="nav-link" href="#">Creer Compte</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+                            <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <ul class="dropdown-menu " aria-labelledby="dropdown01">
                                 <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
                                 <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fichier Des Operations</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
@@ -95,7 +95,7 @@
 
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <p class="nav-link active" aria-current="page">{{nom_agent}} {{prenom_agent}}</p>
+                <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>
                 <a class="nav-link" href="{% url 'operation_home' %}">
                     Les Operations
                     <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>
@@ -171,11 +171,27 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12">
+                                    <label for="address" class="form-label">La Nature De L'operation :</label>
+                                    {{form.nature_operation}}
+                                    <div class="invalid-feedback">
+                                        Entrer Le Nom De L'operation Correctement .
+                                    </div>
+                                </div>
+
                                 
                                 <h4 class="mb-3">Les Informations Des Migrants</h4>
                                 <div class="col-12">
                                     <label for="address" class="form-label">Le Nombre Des Migrants :</label>
                                     {{form.nombre_des_migrants}}
+                                    <div class="invalid-feedback">
+                                        Entrer Le Nombre Des Migrants Correctement .
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Les Migrants :</label>
+                                    {{form.les_migrants}}
                                     <div class="invalid-feedback">
                                         Entrer Le Nombre Des Migrants Correctement .
                                     </div>
@@ -207,12 +223,7 @@
                     </div>
                 </div>
 
-                <div class="row g-3">
-                    <form method = "POST">
-                        {{form_migrant}}
-
-                    </form>
-                </div>
+               
                 
             </main>
 

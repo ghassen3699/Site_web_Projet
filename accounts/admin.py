@@ -5,10 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 
 
 
-
+@admin.register(get_user_model())
 class CustomUserAdmin(UserAdmin) :
     fieldsets = (
-        (None,{'fields': ('email', 'password')}),
+        ('email',{'fields': ('email', 'password')}),
         (_('Personal info'), {'fields':('first_name', 'last_name')}),
         (_('Permissions'), {'fields':('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields':('last_login', 'date_joined')}),
@@ -27,4 +27,4 @@ class CustomUserAdmin(UserAdmin) :
 
 
 
-admin.site.register(get_user_model(), CustomUserAdmin)
+#admin.site.register(get_user_model(), CustomUserAdmin)

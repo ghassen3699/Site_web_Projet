@@ -13,6 +13,7 @@ class OperationTerminerForm(forms.ModelForm) :
             'date_operation' : forms.DateInput(attrs={'class':"form-control",'placeholder':"La Date de l'operation..."}),
             'nombre_des_migrants' : forms.NumberInput(attrs={'class':"form-control",'placeholder':'nombre des migrants ...'}),
             'region' : forms.Select(attrs={'class':"form-select",'placeholder':'LA Region  ...'}),
+            'nature_operation' : forms.Select(attrs={'class':"form-select",'placeholder':"LA Nature De L'operation  ..."}),
             'province' : forms.Select(attrs={'class':"form-select",'placeholder':'La Province ...'}),
             'commissariat' : forms.Select(attrs={'class':"form-select",'placeholder':'Le Commissariat ...'}),
             'les_migrants' : forms.SelectMultiple(attrs={'class':"form-select",'placeholder':'Les Migrants  ...'}),

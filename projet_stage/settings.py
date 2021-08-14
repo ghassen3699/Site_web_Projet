@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,15 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
-    'accounts',
-    'main_2',
-    'contact',
-    'grade_de_travail',
-    'lieu_de_travail',
-    'agent',
-    'migrant_irregulier',
-    'operation',
-    'fichier_des_operations',
+    'rest_framework',
+    'operation.apps.OperationConfig',
+    'accounts.apps.AccountsConfig',
+    'main_2.apps.MainConfig',
+    'contact.apps.ContactConfig',
+    'grade_de_travail.apps.GradeDeTravailConfig',
+    'lieu_de_travail.apps.LieuDeTravailConfig',
+    'agent.apps.AgentConfig',
+    'migrant_irregulier.apps.MigrantIrregulierConfig',
+    
+    'fichier_des_operations.apps.FichierDesOperationsConfig',
+    'pygments' ,
 ]
 
 MIDDLEWARE = [

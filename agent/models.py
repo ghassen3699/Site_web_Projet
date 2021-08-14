@@ -5,12 +5,12 @@ from django.contrib.auth import get_user_model
 
 
 
-user = get_user_model()
+
 
 class Agent(models.Model) :
 
 
-    account_user = models.OneToOneField(user,on_delete=models.CASCADE)
+    account_user = models.OneToOneField(get_user_model(),on_delete=models.CASCADE)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     age = models.IntegerField()

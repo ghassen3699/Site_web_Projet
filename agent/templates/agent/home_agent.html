@@ -10,8 +10,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Hugo 0.83.1">
+        <link rel="icon" type="image/png" href="{% static 'image/7.jpg'%}" />
         <title>La Garde Nationale</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
@@ -22,7 +21,8 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
         <link href="{% static 'css/form-validation.css' %}" rel="stylesheet">
-
+        <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+        
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -62,7 +62,7 @@
                             
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
+                            <a class="nav-link active" href="{% url 'profile_information' %}">Profil</a>
                             
                         </li>
                         <li class="nav-item">
@@ -93,7 +93,7 @@
 
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <p class="nav-link active" aria-current="page">{{nom_agent}} {{prenom_agent}}</p>
+                <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>
                 <a class="nav-link" href="{% url 'operation_home' %}">
                     Les Operations
                     <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>
@@ -114,7 +114,7 @@
             <main>
                 <div class="py-5 text-center">
                     <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-                    <h2>{{prenom_agent}} {{nom_agent}}</h2>
+                    <h2>{{request.user.agent.nom}} {{request.user.agent.prenom}}</h2>
                     <p class="lead">{{profile_infos.grade_de_travail_fk}}</p>
                 </div>
 
@@ -124,108 +124,105 @@
                 
                     <div class="col-md-7 col-lg-12">
                         <h4 class="mb-3">Mes Informations</h4>
-                        <form class="needs-validation" novalidate>
-                            <div class="row g-3">
-                            
-                                <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">Le Prenom</label>
-                                    {{form.prenom}}
-                                    <div class="invalid-feedback">
-                                        Creer Le Prenom Correctement .
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Le Nom</label>
-                                    {{form.nom}}
-                                    <div class="invalid-feedback">
-                                        Creer Le Nom Correctement.
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="username" class="form-label">L'age</label>
-                                    <div class="input-group has-validation">
-                                        
-                                        {{form.age}}
-                                        <div class="invalid-feedback">
-                                            Creer L'age Correctement.
-                                        </div>
-                                    </div>
-                                </div>
-
+                        
+                        <div class="row g-3">
+                        
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Prenom</label>
                                 
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Le Numero Telephone</label>
-                                    {{form.numero_telephone}}
-                                    <div class="invalid-feedback">
-                                        Entrer Le Numero Telephone Correctement .
-                                    </div>
+                                <div class="form-control">
+                                    {{request.user.agent.prenom}}
                                 </div>
-
-                                <div class="col-12">
-                                    <label for="address2" class="form-label">Le Sexe </label>
-                                    {{form.sexe}}
-                                </div>
-
-                                <div class="col-md-5">
-                                    <label for="country" class="form-label">Le Grade De Travail</label>
-                                    {{form.grade_de_travail_fk}}
-                                
-                                </div>
-                                
-                                <div class="col-md-5">
-                                    <label for="country" class="form-label">Le Lieu De Travail</label>
-                                    {{form.lieu_de_travail_fk}}
-                                
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Le Numero CIN</label>
-                                    {{form.numero_cin}}
-                                    <div class="invalid-feedback">
-                                        Entrer Le Numero CIN Correctement .
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">L'Adresse</label>
-                                    {{form.adresse}}
-                                    <div class="invalid-feedback">
-                                        Entrer L'adresse Correctement.
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Le Code Postal</label>
-                                    {{form.code_postal}}
-                                    <div class="invalid-feedback">
-                                        Entrer Le Code Postal Correctement .
-                                    </div>
-                                </div>
-
-                                
                             </div>
 
-                            <hr class="my-4">
-
-                            
-
-                            <div class="form-check">
-                                <label class="form-check-label" for="save-info">Desole Monsieur {{prenom_agent}} Mais T'as Pas Le Droit De Modifier Les Informations</label>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Nom</label>
+                                <div class="form-control">
+                                    {{request.user.agent.nom}}
+                                </div>
                             </div>
 
-                            <hr class="my-4">
+                            <div class="col-12">
+                                <label for="username" class="form-label">Age</label>
+                                <div class="form-control">
+                                    {{request.user.agent.age}}
+                                </div>
+                            </div>
+
+                                
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Numero Telephone</label>
+                                <div class="form-control">
+                                    {{request.user.agent.numero_telephone}}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address2" class="form-label">Genre </label>
+                                <div class="form-control">
+                                    {{request.user.agent.sexe}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="country" class="form-label">Grade De Travail</label>
+                                <div class="form-control">
+                                    {{request.user.agent.grade_de_travail_fk}}
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="col-md-5">
+                                <label for="country" class="form-label">Lieu De Travail</label>
+                                <div class="form-control">
+                                    {{request.user.agent.lieu_de_travail_fk}}
+                                </div>
+                            
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Numero CIN</label>
+                                <div class="form-control">
+                                    {{request.user.agent.numero_cin}}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Adresse</label>
+                                <div class="form-control">
+                                    {{request.user.agent.adresse}}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Code Postal</label>
+                                <div class="form-control">
+                                    {{request.user.agent.code_postal}}
+                                </div>
+                            </div>
+
+                                
+                        </div>
+
+                        <hr class="my-4">
+
+                            
+
+                        <div class="form-check">
+                            <label class="form-check-label" for="save-info">Desole Monsieur {{prenom_agent}} Mais T'as Pas Le Droit De Modifier Les Informations</label>
+                        </div>
+
+                        <hr class="my-4">
 
                             
 
                             
 
-                            <hr class="my-4">
+                        <hr class="my-4">
 
                             
-                        </form>
+                       
                     </div>
                 </div>
             </main>

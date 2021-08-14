@@ -11,8 +11,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Hugo 0.83.1">
+        <link rel="icon" type="image/png" href="{% static 'image/7.jpg'%}" />
         <title>La Garde Nationale</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
@@ -94,7 +93,7 @@
 
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <p class="nav-link active" aria-current="page">{{nom_agent}} {{prenom_agent}}</p>
+                <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>
                 <a class="nav-link" href="{% url 'operation_home' %}">
                     Les Operations
                     <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>

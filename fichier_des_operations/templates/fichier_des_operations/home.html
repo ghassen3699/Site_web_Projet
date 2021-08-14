@@ -1,56 +1,45 @@
 
 
-
-<!doctype html>
-
-
 {% load static %}
 
+<!DOCTYPE html>
 <html lang="en">
-
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Hugo 0.83.1">
-        <title>La Garde Nationale</title>
-
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-
-    
-
-        <!-- Bootstrap core CSS -->
+	<head>
+		<title>La Garde Nationale</title>
+		<meta charSet="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
         <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{% static 'image/7.jpg'%}" />
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+        
 
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                user-select: none;
+		<style media="only screen">
+            html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
             }
 
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-                }
+            html {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0;
+                overflow: auto;
+            }
+
+            body {
+                padding: 1rem;
+                overflow: auto;
             }
         </style>
-    
-        <!-- Custom styles for this template -->
-        
-    </head>
+	</head>
+	<body>
 
-    
-    <body class="bg-light">
-
-        
-    
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'account_home' %}">La Garde Nationale</a>
@@ -88,17 +77,12 @@
                 </div>
             </div>
         </nav>
-
-
-
-
-
-
-
+        
+        <br><br>
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <p class="nav-link active" aria-current="page">{{agent_nom}} {{agent_prenom}}</p>
-                <a class="nav-link " href="{% url 'operation_home' %}">
+                <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>
+                <a class="nav-link" href="{% url 'operation_home' %}">
                     Les Operations
                     <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>
                 </a>
@@ -110,105 +94,87 @@
                 
             </nav>
         </div>
-        
-        <nav class="navbar" aria-label="First navbar example">
-            
-            <div class="container-fluid">
-                <p></p>
-                <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation" href="">
-                    Filtrer<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-                </a>
-
-                
-                <div class="collapse navbar-collapse" id="navbarsExample01">
-                    <ul class="navbar-nav me-auto mb-2">
-                        <form method = 'GET'>
-
-                            <li class="nav-item">
-                                <label for="id_du" class="form-label">Du:</label>
-                    
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" name="du" id="id_du">
-                                </div>
-                            </li>
-
-                            <li class="nav-item">
-                                <label for="id_jusqu_a" class="form-label">Jusqu'a:</label>
-                    
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" name="jusqu_a" value="" id="id_jusqu_a">
-                                </div>
-                            </li>
-
-
-
-
-                            <li class="nav-item">
-                                <label for="id_operation">Les Operation:</label>
-
-                                <div class="col-sm-6">
-                                    <select name="operation" id="id_operation" class="form-control" multiple>
-                                    </select>
-                                </div>
-                                    
-                                <br>
-                                <button type="submit" class="btn btn-primary">Recherche</button>
-                
-                            </li>
-                            
-                        </form>
-                    </ul>
-                        
-                </div>
-            </div>
-        </nav>
 
         <br>
-        <h2>Les Fichiers Des Operations :</h2>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                        <th>Du </th>
-                        <th>Jusqu'a</th>
-                        <th>Les Operation</th>
-                        <th>Telecharger (.csv)</th>
-                        <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+		<div id="myGrid" style="height: 88%;" class="ag-theme-alpine">
+		</div>
+		<script src="https://unpkg.com/@ag-grid-enterprise/all-modules@25.3.0/dist/ag-grid-enterprise.min.js"></script>
+		
+        <script type="text/javascript" charset="utf-8">
+            var columnDefs = [
+                {
+                    headerName: ' ',
+                    headerCheckboxSelection: true,
+                    checkboxSelection: true,
+                    floatingFilter: false,
+                    suppressMenu: true,
+                    minWidth: 50,
+                    maxWidth: 50,
+                    width: 50,
+                    flex: 0,
+                    resizable: false,
+                    sortable: false,
+                    editable: false,
+                    filter: false,
+                    suppressColumnsToolPanel: true,
+                },
+                {
+                    headerName: 'Les Fichiers Des Operations',
+                    children: [
+                        { field: 'du' , filter: 'agDateColumnFilter'},
+                        { field: 'jusqu_a' , filter: 'agDateColumnFilter'},
+                        { field: 'operation' , filter: 'agTextColumnFilter'},
+                    ],
+                },
+                
+                
+                
+            ];
 
-                        {% for fichier in  fichiers %}
-
-                            
-                            <tr>
-                            <td><a href="{% url 'modifier_fichier' fichier.id%}">{{fichier.du}} </a></td>
-                            <td>{{fichier.jusqu_a}}</td>
-                            <td> {% for operation in fichier.operation.all %} - {{operation}} <br> {% endfor %} </td>
-                            <td><a href="#">Telecharger</td>
-                            <td><a href="{% url 'supprimer_fichier' fichier.id %}">Supprimer</td>
-                            </tr>
-
-                        
-                        {% endfor %}
-
-                    </tbody>
-                </table>
-            </div>
-        
+            var gridOptions = {
+            rowData: null,
+            columnDefs: columnDefs,
+            rowSelection: 'multiple',
+            suppressRowClickSelection: true,
+            defaultColDef: {
+                editable: true,
+                sortable: true,
+                minWidth: 100,
+                filter: true,
+                resizable: true,
+                floatingFilter: true,
+                flex: 1,
+            },
+            
+            
+             
 
             
-           
-        </form>
+            sideBar: {
+                toolPanels: ['filters'],
+                defaultToolPanel: '',
+            },
+            };
 
-        
+            // setup the grid after the page has finished loading
+            document.addEventListener('DOMContentLoaded', function () {
+            var gridDiv = document.querySelector('#myGrid');
+            new agGrid.Grid(gridDiv, gridOptions);
+
+            agGrid
+                .simpleHttpRequest({
+                url: 'http://127.0.0.1:8000/accounts/fichier_des_operations/api/',
+                })
+                .then(function (data) {
+                gridOptions.api.setRowData(data);
+                });
+            });
+        </script>
+
         <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
         <script src="{% static 'js/offcanvas.js'%}"></script>
         <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
         <script src="{% static 'js/dashboard.js'%}"></script>
-        
-    </body>
-
-
+	</body>
 </html>
