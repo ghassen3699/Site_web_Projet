@@ -42,13 +42,10 @@ INSTALLED_APPS = [
     'operation.apps.OperationConfig',
     'accounts.apps.AccountsConfig',
     'main_2.apps.MainConfig',
-    'contact.apps.ContactConfig',
     'grade_de_travail.apps.GradeDeTravailConfig',
     'lieu_de_travail.apps.LieuDeTravailConfig',
     'agent.apps.AgentConfig',
     'migrant_irregulier.apps.MigrantIrregulierConfig',
-    
-    'fichier_des_operations.apps.FichierDesOperationsConfig',
     'pygments' ,
 ]
 

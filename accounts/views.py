@@ -8,9 +8,6 @@ from projet_stage import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-
-
-from fichier_des_operations import forms, models
 import operation
 from . import forms
 
@@ -63,16 +60,12 @@ def logout_page(request) :
 
 @login_required(login_url='login')
 def home_page(request) :
-    nombre_fichiers_operations = models.Fichier_Operation.objects.count()
-    fichier_operation_plus_recente = models.Fichier_Operation.objects.order_by('-du')[:5]
     nombre_des_operations_terminer = operation.models.OperationTerminer.objects.count()
     operations_terminer = operation.models.OperationTerminer.objects.order_by('-date_operation')[:5]
     
     return render(request,'accounts/home.html',{
         'nombre_des_operations_terminer':nombre_des_operations_terminer ,
         'operations_terminer':operations_terminer,
-        'nombre_fichiers_operations' : nombre_fichiers_operations ,
-        'fichier_operation_plus_recente' : fichier_operation_plus_recente ,
         }
     )
 

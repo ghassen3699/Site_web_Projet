@@ -68,15 +68,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'statistique' %}">Les Statistiques</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Creer Compte</a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
-
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
                                 <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
-                                <li><a class="dropdown-item" href="{% url 'creer_fichier' %}">Ajouter Une Fichier Des Operations</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Migrant</a></li>
+                                <li><a class="dropdown-item" href="{% url 'modifier_operations' %}">Modifier Operation</a></li>
+                                <li><a class="dropdown-item" href="{% url 'modifier_migrants' %}">Modifier Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>
@@ -86,6 +85,7 @@
             </div>
         </nav>
 
+
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
                 <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>
@@ -93,14 +93,17 @@
                     Les Operations
                     <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>
                 </a>
-                <a class="nav-link" href="{% url 'fichiers_des_operations' %}">
-                    Les Fichiers des Operations
-                    <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_fichiers_operations}}</span>
-                </a>
+                
                 <a class="nav-link" href="{% url 'page_home_migrant' %}">Les Migrants Irreguliers</a>
                 
             </nav>
         </div>
+
+
+
+
+        
+
 
         
     
@@ -112,10 +115,10 @@
 
 </html>
 
+
+
+
 {% block header %}{% endblock %}
-
-
-
 
 
 
@@ -128,6 +131,4 @@
     </ul>
 </footer>
 
-
-{% block footer %}{% endblock %}
 

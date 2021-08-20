@@ -1,0 +1,43 @@
+
+{% extends 'main/base/base.html' %}
+
+
+
+
+
+        
+
+
+{% block header %}
+
+    <br>
+    <h2>Les Operations</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+            <th>Nom operation</th>
+            <th>Date d'operation</th>
+            <th>Nombre des Migrants</th>
+            <th>Region-Province</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for operation in operations %}
+            <tr>
+            <td><a href="{% url 'modifier_operation' operation.id %}">{{operation.nom_operation}}</a></td>
+            <td>{{operation.date_operation}}</td>
+            <td>{{operation.nombre_des_migrants}}</td>
+            <td>{{operation.region}} - {{operation.province}}</td>
+            <td> <a href="{% url 'supprimer_operation' operation.id %}"> Supprimer </a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+
+
+
+{% endblock %}

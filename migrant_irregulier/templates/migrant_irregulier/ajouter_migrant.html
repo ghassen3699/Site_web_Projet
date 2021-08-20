@@ -1,0 +1,175 @@
+
+{% extends 'main/base/base.html' %}
+
+
+
+
+
+        
+
+
+{% block header %}
+
+        
+    
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Ajouter Un Migrant</h2>
+                <hr class="my-3">
+            </div>
+
+            <div class="row g-5">
+                <div class="col-md-7 col-lg-11">
+                    <h4 class="mb-3">Les Informations Du Migrant</h4>
+                    <form method = "POST" class="needs-validation" novalidate>
+                        <div class="row g-3">
+
+
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Le Nom :</label>
+                                {{form.nom}}
+                                <div class="invalid-feedback">
+                                    Entrer le nom Correctement .
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Le Prenom :</label>
+                                {{form.prenom}}
+                                <div class="invalid-feedback">
+                                    Entrer le prenom Correctement.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">L'age :</label>
+                                {{form.age}}
+                                <div class="invalid-feedback">
+                                    Entrer L'age Correctement .
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Genre :</label>
+                                {{form.sexe}}
+                                <div class="invalid-feedback">
+                                    Entrer Le genre Correctement .
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Nationalité :</label>
+                                {{form.nationalite}}
+                                <div class="invalid-feedback">
+                                    Entrer La nationalite Correctement .
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label for="address" class="form-label"> Image Personnel:</label>
+                                {{form.photo_personnel}}
+                                <div class="invalid-feedback">
+                                    Entrer la photo photo personnel .
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label for="username" class="form-label">N°Cin (Si le migrant est tunisien) :</label>
+                                <div class="input-group has-validation">
+                                    
+                                    {{form.numero_cin}}
+                                    <div class="invalid-feedback">
+                                        Entrer Le Numero CIN Correctement.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label"> Copie Cin:</label>
+                                {{form.copie_cin}}
+                                <div class="invalid-feedback">
+                                    Entrer la photo photo personnel .
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">N°Passport (Si le migrant est étranger) :</label>
+                                {{form.numero_passport}}
+                                <div class="invalid-feedback">
+                                    Entrer Le Numero du Passport Correctement .
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label"> Copie Passport:</label>
+                                {{form.copie_passport}}
+                                <div class="invalid-feedback">
+                                    Entrer la photo photo personnel .
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address2" class="form-label">Numero Telephone :</label>
+                                {{form.numero_telephone}}
+                                <div class="invalid-feedback">
+                                    Entrer le numero Telephone Correctement .
+                                </div>
+                            </div>
+
+                              
+                            <div class="col-12">
+                                <label for="address" class="form-label">La date du Capte  :</label>
+                                {{form.capter_date}}
+                                <div class="invalid-feedback">
+                                    Entrer La date Correctement .
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Description :</label>
+                                {{form.description}}
+                                <div class="invalid-feedback">
+                                    Entrer la Description Correctement .
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        
+                        
+
+                        <hr class="my-4">
+
+                        
+
+                        
+                        <div class="py-5 text-center">
+                            <button type="submit" class="btn btn-secondary btn-lg text-center">Ajouter</button>
+                            <hr class="my-3">
+                            
+                        </div>
+                        {% csrf_token %}
+                        
+
+                        
+
+                    
+                        
+                    </form>
+                </div>
+            </div>
+
+            
+            
+        </main>
+
+    </div>
+
+{% endblock %}

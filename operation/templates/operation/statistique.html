@@ -35,12 +35,12 @@
                 headerName: 'Les Statistiques',
                 children: [
                     { field: 'region' , filter: 'agTextColumnFilter'},
-                    { field: 'nombre des operations total' , filter: 'agSetColumnFilter'},
+                    { field: 'nombre_des_operations' , filter: 'agSetColumnFilter'},
                     { field: 'terre' , filter: 'agNumberColumnFilter'},
                     { field: 'mer' , filter: 'agNumberColumnFilter'},
-                    { field: 'nombre des migrants total' , filter: 'agNumberColumnFilter'},
-                    { field: 'nombre des migrants tunisiens' , filter: 'agNumberColumnFilter'},
-                    { field: 'nombre des migrants etrangers' , filter: 'agNumberColumnFilter'},
+                    { field: 'nombre_des_migrant' , filter: 'agNumberColumnFilter'},
+                    { field: 'nombre_des_migrants_tunisien' , filter: 'agNumberColumnFilter'},
+                    { field: 'nombre_des_migrants_etranger' , filter: 'agNumberColumnFilter'},
                     
                 ],
             },
@@ -81,7 +81,7 @@
 
         agGrid
             .simpleHttpRequest({
-            url: 'http://127.0.0.1:8000/accounts/operation/statistique_api/',
+            url: 'http://127.0.0.1:8000/accounts/operation/test/',
             })
             .then(function (data) {
             gridOptions.api.setRowData(data);
