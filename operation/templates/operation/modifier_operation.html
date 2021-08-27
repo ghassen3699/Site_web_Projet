@@ -9,23 +9,21 @@
 
 
 {% block header %}
+
         
     
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <h2>Modifier l'operation</h2>
+                <h2>Modifier Operation</h2>
                 <hr class="my-3">
                 <p class="lead">{{profile_infos.grade_de_travail_fk}}</p>
             </div>
 
             <div class="row g-5">
-                
-            
-            
                 <div class="col-md-7 col-lg-11">
                     <h4 class="mb-3">Lieu De L'operation</h4>
-                    <form method="POST" class="needs-validation" novalidate>
+                    <form method = "POST" class="needs-validation" novalidate>
                         <div class="row g-3">
                         
                             <div class="col-sm-6">
@@ -73,6 +71,14 @@
                                 </div>
                             </div>
 
+                            <div class="col-12">
+                                <label for="address" class="form-label">La Nature De L'operation :</label>
+                                {{form.nature_operation}}
+                                <div class="invalid-feedback">
+                                    Entrer Le Nom De L'operation Correctement .
+                                </div>
+                            </div>
+
                             <h4 class="mb-3">Les Informations Des Agents</h4>
 
                             <div class="col-12">
@@ -82,7 +88,7 @@
                                     Entrer Le Nombre Des Agents Correctement .
                                 </div>
                             </div>
-                            
+
                             
                             <h4 class="mb-3">Les Informations Des Migrants</h4>
                             <div class="col-12">
@@ -92,29 +98,45 @@
                                     Entrer Le Nombre Des Migrants Correctement .
                                 </div>
                             </div>
-                            
-                            
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Les Migrants :</label>
+                                {{form.les_migrants}}
+                                <div class="invalid-feedback">
+                                    Entrer Le Nombre Des Migrants Correctement .
+                                </div>
+                            </div>
                         </div>
+
+
+                        
+                        
 
                         <hr class="my-4">
 
                         
 
+                        
                         <div class="py-5 text-center">
                             <button type="submit" class="btn btn-secondary btn-lg text-center">Modifier</button>
                             <hr class="my-3">
                             
                         </div>
                         {% csrf_token %}
+                        
 
+                        
+
+                    
                         
                     </form>
                 </div>
             </div>
+
+            
+            
         </main>
 
     </div>
-
-
 
 {% endblock %}

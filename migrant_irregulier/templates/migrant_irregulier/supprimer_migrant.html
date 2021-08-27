@@ -1,0 +1,44 @@
+
+{% extends 'main/base/base.html' %}
+
+
+
+
+
+        
+
+
+{% block header %}
+        
+        
+    <nav class="navbar" aria-label="First navbar example">
+        
+        <div class="container-fluid">
+            <p></p>
+            
+            
+            <div class="collapse navbar-collapse" id="navbarsExample01">
+                
+                    
+            </div>
+        </div>
+    </nav>
+
+    <form method = "POST">
+        <div class="py-5 text-center">
+            <hr class="my-2">
+            <h2>Est Ce Que Vous Etes Sur De Supprimer Ce migrant ?</h2>
+            <hr class="my-2">
+            <div class="py-5 text-center">
+                <button type="submit" class="btn btn-secondary btn-lg text-center">Supprimer</button>
+                <a href="{% url 'modifier_migrants' %}" class="btn btn-secondary btn-lg text-center">Retourner</a>
+                
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+        
+        
+        
+{% endblock %}
+    

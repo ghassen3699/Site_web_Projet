@@ -15,7 +15,15 @@
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <h2>Ajouter Une Operation</h2>
+                
+                {% for message in messages %}
+                    <script>
+                        alert("Operation Enregistrer");
+                    </script>
+                {% endfor %}
+                
+                
+                <h2>Ajouter Une Operation</h2>        
                 <hr class="my-3">
                 <p class="lead">{{profile_infos.grade_de_travail_fk}}</p>
             </div>
@@ -79,6 +87,16 @@
                                 </div>
                             </div>
 
+                            <h4 class="mb-3">Les Informations Des Agents</h4>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Le Nombre Des Agents :</label>
+                                {{form.nombre_des_agents}}
+                                <div class="invalid-feedback">
+                                    Entrer Le Nombre Des Agents Correctement .
+                                </div>
+                            </div>
+
                             
                             <h4 class="mb-3">Les Informations Des Migrants</h4>
                             <div class="col-12">
@@ -114,7 +132,6 @@
                         </div>
                         {% csrf_token %}
                         
-
                         
 
                     

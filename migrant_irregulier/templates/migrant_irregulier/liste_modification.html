@@ -1,0 +1,93 @@
+
+{% extends 'main/base/base.html' %}
+
+
+
+
+
+        
+
+
+{% block header %}
+
+    <br>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <h2>Les Migrants</h2>
+                </ul>
+                {% for message in messages %}
+                    <script>
+                        alert("Migrant Modifier");
+                    </script>
+                {% endfor %}
+                <form method = "POST" class="d-flex">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Recherche ...." aria-label="Search" name="recherche">
+                    <button class="btn btn-outline-dark" type="submit">Recherche</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <hr class="my-4">
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>N°CIN</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Age</th>
+                    <th>N°Passport</th>
+                    <th>Genre</th>
+                    <th>Numero Telephone</th>
+                    <th>Nationalite</th>
+                    <th>Date de Capte</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for migrant in migrants %}
+                <tr>
+                    <td>{{migrant.numero_cin}}</td>
+                    <td>{{migrant.nom}}</td>
+                    <td>{{migrant.prenom}}</td>
+                    <td>{{migrant.age}}</td>
+                    <td>{{migrant.numero_passport}}</td>
+                    <td>{{migrant.sexe}}</td>
+                    <td>{{migrant.numero_telephone}}</td>
+                    <td>{{migrant.nationalite}}</td>
+                    <td>{{migrant.capter_date}}</td>
+                    <td> <a href="{% url 'modifier_migrant' migrant.id %}"> Modifier </a> </td>
+                    <td> <a href="{% url 'suprimer_migrant' migrant.id %}"> Supprimer </a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+            <tbody>
+                {% for m in migrant %}
+                <tr>
+                    <td>{{m.numero_cin}}</td>
+                    <td>{{m.nom}}</td>
+                    <td>{{m.prenom}}</td>
+                    <td>{{m.age}}</td>
+                    <td>{{m.numero_passport}}</td>
+                    <td>{{m.sexe}}</td>
+                    <td>{{m.numero_telephone}}</td>
+                    <td>{{m.nationalite}}</td>
+                    <td>{{m.capter_date}}</td>
+                    <td> <a href="{% url 'modifier_migrant' m.id %}"> Modifier </a> </td>
+                    <td> <a href="{% url 'suprimer_migrant' m.id %}"> Supprimer </a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr class="my-4">
+
+{% endblock %}

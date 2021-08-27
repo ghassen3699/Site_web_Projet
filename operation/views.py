@@ -17,7 +17,7 @@ from .serializers import OperationSerializer
 from lieu_de_travail.serializers import  SerializeRegion
 from lieu_de_travail.models import Region
 
-
+from django.contrib import messages
 
 
 
@@ -30,14 +30,15 @@ def creer_operations(request) :
     form = forms.OperationTerminerForm()
 
     if request.method == 'POST' :
-
         form = forms.OperationTerminerForm(request.POST)
 
         if form.is_valid() :
+            form.save()
+            operation = form.cleaned_data.get('nom_operation')
+            messages.success(request,'{} est enregistrer'.format(operation))
             return redirect('ajouter_operation')
-
         else :
-            return render(request,'operation/creer_operation.html',{'form':form})
+            messages.success(request,"Il y'a une erreur au niveau de votre formulaire")
 
     return render(request,'operation/creer_operation.html',{'form':form})
 
@@ -248,8 +249,17 @@ def modifier_operation(request,pk) :
         form = forms.OperationTerminerForm(request.POST,instance=operation)
         if form.is_valid() :
             form.save()
-            return redirect('operation_home')
+            messages.success(request,'{} est modifier'.format(operation))
+            return redirect('modifier_operations')
+        else :
+            messages.success(request,"Il y'a une erreur au niveau de votre formulaire")
+
     return render(request,'operation/modifier_operation.html',{'form':form})
+
+
+
+
+
 
 
 
@@ -261,8 +271,13 @@ def supprimer_operation(request, pk) :
     operation = models.OperationTerminer.objects.get(id = pk)
     if request.method == 'POST' :
         operation.delete()
-        return redirect('operation_home')
+        return redirect('modifier_operations')
     return render(request,'operation/supprimer_operation.html',{'operation':operation})
+
+
+
+
+
 
 
 
@@ -270,6 +285,28 @@ def supprimer_operation(request, pk) :
 
 def liste_modification(request) :
     operations = models.OperationTerminer.objects.all()
-    return render(request,'operation/liste_modification.html',{'operations':operations})
+
+    if request.method == "POST" :
+        recherche = request.POST['recherche']
+        operation = models.OperationTerminer.objects.filter(nom_operation__icontains = recherche)
+        if not operation.exists() :
+            operation = models.OperationTerminer.objects.filter(date_operation__icontains = recherche)
+        
+        if not operation.exists() :
+            operation = models.OperationTerminer.objects.filter(nombre_des_migrants__icontains = recherche)
+        
+        if not operation.exists() :
+            operation = models.OperationTerminer.objects.filter(region__nom_region__icontains = recherche)
+        
+        if not operation.exists() :
+            operation = models.OperationTerminer.objects.filter(province__nom_province__icontains = recherche)
+        
+
+        return render(request,'operation/liste_modification.html',{'operation':operation})
+
+    else :
+        operations = models.OperationTerminer.objects.all()
+        return render(request,'operation/liste_modification.html',{'operations':operations})
+
 
 

@@ -68,12 +68,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'statistique' %}">Les Statistiques</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ajouter_operation' %}">Ajouter Operation</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ajouter_migrant' %}">Ajouter Migrant</a>
+                        </li>
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item" href="{% url 'ajouter_operation' %}">Ajouter Operation</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ajouter_migrant' %}">Ajouter Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'modifier_operations' %}">Modifier Operation</a></li>
                                 <li><a class="dropdown-item" href="{% url 'modifier_migrants' %}">Modifier Migrant</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
@@ -85,7 +91,7 @@
             </div>
         </nav>
 
-
+        
         <div class="nav-scroller bg-body shadow-sm">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
                 <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>

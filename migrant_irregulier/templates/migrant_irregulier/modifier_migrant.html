@@ -15,15 +15,10 @@
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <h2>Ajouter Un Migrant</h2>
-                {% for message in messages %}
-                    <script>
-                        alert("Migrant Enregistrer");
-                    </script>
-                {% endfor %}
+                <h2>Modifier Migrant</h2>
                 <hr class="my-3">
             </div>
-
+            
             <div class="row g-5">
                 <div class="col-md-7 col-lg-11">
                     <h4 class="mb-3">Les Informations Du Migrant</h4>
@@ -156,16 +151,12 @@
 
                         
                         <div class="py-5 text-center">
-                            <button type="submit" class="btn btn-secondary btn-lg text-center">Ajouter</button>
+                            <button type="submit" class="btn btn-secondary btn-lg text-center">Modifier</button>
                             <hr class="my-3">
                             
                         </div>
                         {% csrf_token %}
                         
-
-                        
-
-                    
                         
                     </form>
                 </div>
