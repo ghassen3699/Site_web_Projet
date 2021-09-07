@@ -22,3 +22,5 @@ urlpatterns = [
     path('', include('main_2.urls')),
     path('agent/', include('agent.urls')),
 ]
+
+

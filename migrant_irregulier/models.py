@@ -18,9 +18,9 @@ class MigrantIrregulier(models.Model) :
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     age = models.IntegerField()
-    numero_cin = models.CharField(max_length=8,verbose_name="le numero cin",blank=True)
+    numero_cin = models.CharField(max_length=8,verbose_name="le numero cin",blank=True,unique=True)
     copie_cin = models.ImageField(blank = True)
-    numero_passport = models.CharField(max_length=30,blank=True,verbose_name="le numero de passport")
+    numero_passport = models.CharField(max_length=30,blank=True,verbose_name="le numero de passport",unique=True)
     copie_passport = models.ImageField(blank = True,verbose_name="copie passport")
 
 

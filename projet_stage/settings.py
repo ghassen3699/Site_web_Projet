@@ -157,12 +157,6 @@ USE_TZ = True
 
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
-
 
 
 # definir le nouveau modele User avant les modifications
@@ -193,8 +187,15 @@ EMAIL_HOST_PASSWORD = " mots de passe de l'adresse mail "
 
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATIC_URL = '/static/'
+
+
 ######################################### Intialiser les fichiers static pour le design du site web ####################################
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 #########################################################################################################################################
+
