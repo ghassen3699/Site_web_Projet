@@ -1,35 +1,180 @@
 
-
-<!DOCTYPE html>
-{% load static %}
-
-
-
-<html lang="en" dir="ltr">
+{% extends 'main/base/base.html' %}
 
 
 
 
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+
+        
 
 
+{% block header %}
 
-  <body>
-    <a href='{% url 'login' %}'> login</a>
+        
+    
+  <div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Ajouter Un Nouveau Compte</h2>
+            {% for message in messages %}
+                <script>
+                    alert("Migrant Enregistrer");
+                </script>
+            {% endfor %}
+            <hr class="my-3">
+        </div>
 
-  
-    <form method="POST">
-        {{form.as_p}}
-        {% csrf_token %}
-      <button type="submit">Envoyer</button>
-    </form>
-
-  </body>
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-11">
+                <h4 class="mb-3">Les Informations Du Compte</h4>
+                <form method = "POST" class="needs-validation" novalidate>
+                    <div class="row g-3">
 
 
+                        <div class="col-12">
+                            <label for="firstName" class="form-label">Adresse Mail :</label>
+                            {{user_form.email}}
+                            <div class="invalid-feedback">
+                                Entrer le nom Correctement .
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Mots de passe :</label>
+                            <input class='form-control' type="password" name="password1" autocomplete="new-password" required id="id_password1">
+                            <div class="invalid-feedback">
+                                Entrer le prenom Correctement.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="address" class="form-label">Confirmer Mots de passe :</label>
+                            <input type="password" class ='form-control'name="password2" autocomplete="new-password" required id="id_password2">
+                            <div class="invalid-feedback">
+                                Entrer L'age Correctement .
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Nom :</label>
+                            {{agent_form.nom}}
+                            <div class="invalid-feedback">
+                                Entrer Le genre Correctement .
+                            </div>
+                        </div>
 
 
-</html>
+                        <div class="col-12">
+                            <label for="address" class="form-label">Prenom :</label>
+                            {{agent_form.prenom}}
+                            <div class="invalid-feedback">
+                                Entrer La nationalite Correctement .
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <label for="address" class="form-label"> Age: </label>
+                            {{agent_form.age}}
+                            <div class="invalid-feedback">
+                                Entrer la photo photo personnel .
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <label for="username" class="form-label">Numero Telephone :</label>
+                            <div class="input-group has-validation">
+                                
+                                {{agent_form.numero_telephone}}
+                                <div class="invalid-feedback">
+                                    Entrer Le Numero CIN Correctement.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label"> Adresse :</label>
+                            {{agent_form.adresse}}
+                            <div class="invalid-feedback">
+                                Entrer la photo photo personnel .
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Code Postal :</label>
+                            {{agent_form.code_postal}}
+                            <div class="invalid-feedback">
+                                Entrer Le Numero du Passport Correctement .
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label"> Genre :</label>
+                            {{agent_form.genre}}
+                            <div class="invalid-feedback">
+                                Entrer la photo photo personnel .
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address2" class="form-label">Le Grade De Travail</label>
+                            {{agent_form.grade_de_travail_fk}}
+                            <div class="invalid-feedback">
+                                Entrer le numero Telephone Correctement .
+                            </div>
+                        </div>
+
+                          
+                        <div class="col-12">
+                            <label for="address" class="form-label">Le Lieu Du Travail :</label>
+                            {{agent_form.lieu_de_travail_fk}}
+                            <div class="invalid-feedback">
+                                Entrer La date Correctement .
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Numero Cin</label>
+                            {{agent_form.numero_cin}}
+                            <div class="invalid-feedback">
+                                Entrer la Description Correctement .
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    
+                    
+
+                    <hr class="my-4">
+
+                    
+
+                    
+                    <div class="py-5 text-center">
+                        <button type="submit" class="btn btn-secondary btn-lg text-center">Ajouter</button>
+                        <hr class="my-3">
+                        
+                    </div>
+                    {% csrf_token %}
+                    
+
+                    
+
+                
+                    
+                </form>
+            </div>
+        </div>
+
+        
+        
+    </main>
+
+  </div>
+
+{% endblock %}

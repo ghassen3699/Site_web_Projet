@@ -25,7 +25,6 @@ class Agent(models.Model) :
     grade_de_travail_fk = models.ForeignKey(GradeDeTravail,on_delete=models.CASCADE)
     lieu_de_travail_fk = models.ForeignKey(Lieu_De_Travail,on_delete=models.CASCADE)
     numero_cin = models.CharField(max_length=8)
-    copie_cin = models.ImageField()
     
 
 

@@ -1,3 +1,4 @@
+import agent
 from django.shortcuts import render, redirect
 from django.contrib.auth import  logout
 
@@ -10,39 +11,39 @@ from django.contrib import messages
 
 import operation
 from . import forms
+from agent.forms import AgentForm
+from agent.models import Agent
 
-'''
-# fonction signup 
-#######################################################################################################################################################
-@login_required(login_url='login')
-def signup(request) :
-    form = forms.UserAdminCreation()    # lire la formulaire SignupForm
-    if request.method == 'POST' :      # verifier la methode de la requete
-        form = forms.UserAdminCreation(request.POST)    # lire le contenu de la formulaire et l'enregistrer dans l'objet form
-        if form.is_valid() :     # verifier si la formulaire est valide ou non
-            form.save()              # enregistrer les donnees de la formulaire a la base de donnees 
-            email = form.cleaned_data.get('email')        # enregistrer l'adresse mail de l'utilisateur dans un nouveau objet email
 
-            email_subject = 'Activate Your Account'
-            template_mail = ''
-            email = EmailMessage(
-                email_subject ,
-                template_mail ,
-                settings.EMAIL_HOST_USER ,
-                [email] ,
+
+
+
+def ajouter_compte(request) :
+    user_form = forms.UserAdminCreation()
+    agent_form = AgentForm()
+    if request.method == 'POST' :
+        user_form = forms.UserAdminCreation(request.POST)
+        agent_form = AgentForm(request.POST)
+        if user_form.is_valid() and agent_form.is_valid() :
+            user = user_form.save()
+            Agent.objects.create(
+                account_user = user ,
+                nom = agent_form.cleaned_data.get('nom') ,
+                prenom = agent_form.cleaned_data.get('prenom') ,
+                age = agent_form.cleaned_data.get('age') ,
+                numero_telephone = agent_form.cleaned_data.get('numero_telephone') ,
+                adresse = agent_form.cleaned_data.get('adresse') ,
+                code_postal = agent_form.cleaned_data.get('code_postal') ,
+                genre = agent_form.cleaned_data.get('genre') ,
+                grade_de_travail_fk = agent_form.cleaned_data.get('grade_de_travail_fk') ,
+                lieu_de_travail_fk = agent_form.cleaned_data.get('lieu_de_travail_fk') ,
+                numero_cin = agent_form.cleaned_data.get('numero_cin') ,
             )
-            email.send(fail_silently=False)
-            messages.success(request,"Le Compte Est Creer , Verifier S'il Vous Plais L'adresse Mail ")
-            return redirect('account_home')                       # retourner automatiquement a la page principale du compte 
-       
+            messages.success(request,'Le Compte Est Creer')
+            return redirect('account_home')
         else :
-            messages.warning(request,"L'adresse Mail Ou Le Mots De Passe Est Mal Creer")
-            return render(request,'accounts/signup.html',{'form':form})                     # si on a un probleme au niveau de la formulaire , retourner la meme page 
-    return render(request,'accounts/signup.html',{'form':form})                             # si la methode le requete est GET on affiche la meme page 
-#########################################################################################################################################################
-'''
-
-
+            messages.success("Il y'a un erreur au niveau de votre formulaire")
+    return render(request,'accounts/signup.html',{'user_form':user_form,'agent_form':agent_form})
 
 
 

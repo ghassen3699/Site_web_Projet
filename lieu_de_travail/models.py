@@ -40,9 +40,9 @@ class Commissariat_De_Police(models.Model) :
 
 class Lieu_De_Travail(models.Model) :
     
-    region_fk = models.OneToOneField(Region,on_delete=models.CASCADE)
-    province_fk = models.OneToOneField(Province,on_delete=models.CASCADE)
-    commissariat_fk = models.OneToOneField(Commissariat_De_Police, on_delete=models.CASCADE)
+    region_fk = models.ForeignKey(Region,on_delete=models.CASCADE)
+    province_fk = models.ForeignKey(Province,on_delete=models.CASCADE)
+    commissariat_fk = models.ForeignKey(Commissariat_De_Police, on_delete=models.CASCADE)
 
 
     def __str__(self) :

@@ -85,6 +85,9 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdown01">
                                 <li><a class="dropdown-item" href="{% url 'modifier_operations' %}">Modifier Operation</a></li>
                                 <li><a class="dropdown-item" href="{% url 'modifier_migrants' %}">Modifier Migrant</a></li>
+                                {% if user.is_superuser %}
+                                <li><a class="dropdown-item" href="{% url 'Ajouter_Compte' %}">Ajouter Autre Compte</a></li>
+                                {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>

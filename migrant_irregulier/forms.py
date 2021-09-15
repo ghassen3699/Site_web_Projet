@@ -22,8 +22,6 @@ class MigrantIrregulierForm(forms.ModelForm) :
             'photo_personnel' : forms.FileInput(attrs={'class':"form-control",'placeholder':"Une description ..."}),
             'copie_cin' : forms.FileInput(attrs={'class':"form-control",'placeholder':"Une description ..."}),
             'copie_passport' : forms.FileInput(attrs={'class':"form-control",'placeholder':"Une description ..."})
-
-
         }
 
 
