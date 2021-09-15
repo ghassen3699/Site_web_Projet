@@ -14,9 +14,7 @@
    
 
     {% for message in messages %}
-        <script>
-            alert("Operation Supprimer");
-        </script>
+        <div class='alert alert-info'>{{message}}</div>
     {% endfor %}
     <form method = "POST">
         <div class="py-5 text-center">

@@ -15,12 +15,11 @@
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <h2>Ajouter Un Migrant</h2>
                 {% for message in messages %}
-                    <script>
-                        alert("Migrant Enregistrer");
-                    </script>
+                   <div class='alert alert-info'>{{message}}</div>
+                   <br>
                 {% endfor %}
+                <h2>Ajouter Un Migrant</h2>
                 <hr class="my-3">
             </div>
 

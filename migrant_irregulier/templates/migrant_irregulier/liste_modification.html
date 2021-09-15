@@ -18,9 +18,8 @@
                     <h2>Les Migrants</h2>
                 </ul>
                 {% for message in messages %}
-                    <script>
-                        alert("Migrant Modifier");
-                    </script>
+                   <div class='alert alert-info'>{{message}}</div>
+                   <br>
                 {% endfor %}
                 <form method = "POST" class="d-flex">
                     {% csrf_token %}

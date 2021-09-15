@@ -23,7 +23,6 @@ class Agent(models.Model) :
         )
     genre = models.CharField(max_length=30,choices=GENRE) 
     grade_de_travail_fk = models.ForeignKey(GradeDeTravail,on_delete=models.CASCADE)
-    lieu_de_travail_fk = models.ForeignKey(Lieu_De_Travail,on_delete=models.CASCADE)
     numero_cin = models.CharField(max_length=8)
     
 

@@ -11,7 +11,6 @@ class OperationTerminer(models.Model) :
     nombre_des_agents = models.IntegerField(verbose_name="le nombres des agents")
     region = models.ForeignKey(Region,on_delete=models.CASCADE)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
-    commissariat = models.ForeignKey(Commissariat_De_Police,on_delete=models.CASCADE)
     NATURE_OPERATION = (
         ('Terre', 'Terre'),
         ('Mer', 'Mer'),

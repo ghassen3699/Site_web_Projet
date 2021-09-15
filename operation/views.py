@@ -1,13 +1,12 @@
-
 from django.db.models.functions import Cast
-from django.db.models.aggregates import Sum, Variance
-from django.db.models.expressions import F, Value
+from django.db.models.aggregates import Sum
 from django.db.models.fields import IntegerField
 from django.shortcuts import redirect, render
 from . import models, forms
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.db.models import Q
+
 ################ django rest framework ###############
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -90,84 +89,6 @@ def retourner_les_id() :
     return liste_des_id_regions
 
 
-
-'''
-@api_view(['GET'])
-@login_required(login_url='login')
-def statistique(request) :
-    liste_total = []
-    dictionnaire = {}
-
-
-    liste_des_id_regions = retourner_les_id()
-
-    # remplissage de la liste par les noms des regions 
-    regions = models.Region.objects.all().values('nom_region')
-    
-
-    for i in liste_des_id_regions :
-        operations = models.OperationTerminer.objects.filter(region_id = i)
-        nombre_des_operations = operations.count()    
-        
-        # si dans cette operation on a pas des operations 
-        if nombre_des_operations > 0 :
-
-            # calculer le nombre des operations a la terre et a la mer 
-            ####################################################################################################################
-            operation_terre =  models.OperationTerminer.objects.filter(region_id = i,nature_operation='Terre').count()
-            operation_mer = models.OperationTerminer.objects.filter(region_id = i,nature_operation='Mer').count()
-            ####################################################################################################################
-            
-            
-            #calculer le nombre total des migrants 
-            ####################################################################################################################
-            nombre_des_migrants = 0
-            for migrant in operations.values('nombre_des_migrants') :
-                nombre_des_migrants = nombre_des_migrants + migrant['nombre_des_migrants']
-            #####################################################################################################################
-            
-            # si on a pas des migrants 
-            ##############################################################################
-            if nombre_des_migrants == 0 :
-                dictionnaire['nom_region'] = regions[i-1]['nom_region'],
-                dictionnaire['nombre des operations total'] = nombre_des_operations,
-                dictionnaire['terre'] = operation_terre,
-                dictionnaire['mer'] = operation_mer,
-                dictionnaire['nombre des migrants total'] = 0,
-                dictionnaire['nombre des migrants tunisiens'] = 0,
-                dictionnaire['nombre des migrants etrangers'] = 0
-                liste_total.append(dict(dictionnaire))
-            ################################################################################
-            
-            
-            # si on a des migrants 
-            #################################################################################
-            else :
-
-                # calculer le nombre des migrants tunisiens
-                ######################################################
-                les_migtunisiens = 0 
-                id_tunisie = Nationalite.objects.values('id').filter(nom_nationalite='Tunisie') 
-                for x in operations :
-                    les_migrants_tunisiens = models.MigrantIrregulier.objects.filter(operationterminer = x.id , nationalite = id_tunisie[0]['id']).count()
-                    les_migtunisiens = les_migtunisiens + les_migrants_tunisiens
-                ######################################################
-
-
-                dictionnaire['region'] =  regions[i-1]['nom_region'],
-                dictionnaire['nombre des operations total'] = nombre_des_operations,
-                dictionnaire['terre'] = operation_terre,
-                dictionnaire['mer'] = operation_mer,
-                dictionnaire['nombre des migrants total'] = nombre_des_migrants,
-                dictionnaire['nombre des migrants tunisiens'] = les_migtunisiens,
-                dictionnaire['nombre des migrants etrangers'] = nombre_des_migrants - les_migtunisiens
-                liste_total.append(dict(dictionnaire))
-            ####################################################################################
-
-    return Response(liste_total)
-
-
-'''
 
 
 @login_required(login_url='login')

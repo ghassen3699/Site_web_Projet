@@ -15,11 +15,10 @@
   <div class="container">
     <main>
         <div class="py-5 text-center">
-            <h2>Ajouter Un Nouveau Compte</h2>
+            <h2>Ajouter Un Compte</h2>
             {% for message in messages %}
-                <script>
-                    alert("Migrant Enregistrer");
-                </script>
+                <div class='alert alert-info'>{{message}}</div>
+                <br>
             {% endfor %}
             <hr class="my-3">
         </div>
@@ -39,6 +38,8 @@
                             </div>
                         </div>
 
+                        
+
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Mots de passe :</label>
                             <input class='form-control' type="password" name="password1" autocomplete="new-password" required id="id_password1">
@@ -48,7 +49,7 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="address" class="form-label">Confirmer Mots de passe :</label>
+                            <label for="address" class="form-label">Mots de passe Confirmer :</label>
                             <input type="password" class ='form-control'name="password2" autocomplete="new-password" required id="id_password2">
                             <div class="invalid-feedback">
                                 Entrer L'age Correctement .
@@ -126,14 +127,7 @@
                         </div>
 
                           
-                        <div class="col-12">
-                            <label for="address" class="form-label">Le Lieu Du Travail :</label>
-                            {{agent_form.lieu_de_travail_fk}}
-                            <div class="invalid-feedback">
-                                Entrer La date Correctement .
-                            </div>
-                        </div>
-
+                        
                         
 
                         <div class="col-12">

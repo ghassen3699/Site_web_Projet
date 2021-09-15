@@ -17,12 +17,9 @@
             <div class="py-5 text-center">
                 
                 {% for message in messages %}
-                    <script>
-                        alert("Operation Enregistrer");
-                    </script>
+                   <div class='alert alert-info'>{{message}}</div>
+                   <br>
                 {% endfor %}
-                
-                
                 <h2>Ajouter Une Operation</h2>        
                 <hr class="my-3">
                 <p class="lead">{{profile_infos.grade_de_travail_fk}}</p>
@@ -50,16 +47,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
-                                <label for="username" class="form-label">La Commissariat :</label>
-                                <div class="input-group has-validation">
-                                    
-                                    {{form.commissariat}}
-                                    <div class="invalid-feedback">
-                                        Entrer La Commissariat Correctement.
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <h4 class="mb-3">Les Informations De L'operation</h4>
 
