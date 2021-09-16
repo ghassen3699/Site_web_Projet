@@ -1,7 +1,6 @@
 from django.urls import path
 from django.urls.conf import include
 from . import views
-from django.contrib import admin
 
 
 
@@ -14,5 +13,4 @@ urlpatterns = [
     path('operation/', include('operation.urls')),
     path('agent/', include('agent.urls')),
     path('ajouter_compte/',views.ajouter_compte, name='Ajouter_Compte'),
-    path('admin/', admin.site.urls,name='admin_pages'),
 ]

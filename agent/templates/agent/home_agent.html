@@ -35,6 +35,14 @@
                             </div>
                         </div>
 
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Numero CIN</label>
+                            <div class="form-control">
+                                {{request.user.agent.numero_cin}}
+                            </div>
+                        </div>    
+
                         <div class="col-12">
                             <label for="username" class="form-label">Age</label>
                             <div class="form-control">
@@ -42,7 +50,7 @@
                             </div>
                         </div>
 
-                            
+                        
 
                         <div class="col-12">
                             <label for="address" class="form-label">Numero Telephone</label>
@@ -58,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <label for="country" class="form-label">Grade De Travail</label>
                             <div class="form-control">
                                 {{request.user.agent.grade_de_travail_fk}}
@@ -66,29 +74,17 @@
                         
                         </div>
                         
-                        <div class="col-md-6">
-                            <label for="country" class="form-label">Lieu De Travail</label>
-                            <div class="form-control">
-                                {{request.user.agent.lieu_de_travail_fk}}
-                            </div>
                         
-                        </div>
+                        
 
-                        <div class="col-12">
-                            <label for="address" class="form-label">Numero CIN</label>
-                            <div class="form-control">
-                                {{request.user.agent.numero_cin}}
-                            </div>
-                        </div>
-
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="address" class="form-label">Adresse</label>
                             <div class="form-control">
                                 {{request.user.agent.adresse}}
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="address" class="form-label">Code Postal</label>
                             <div class="form-control">
                                 {{request.user.agent.code_postal}}
@@ -102,10 +98,9 @@
 
                         
                     <div class="py-5 text-center">
-                            <label class="form-check-label" for="save-info">Desole Monsieur {{prenom_agent}} Mais T'as Pas Le Droit De Modifier Les Informations</label>
-                            <hr class="my-4">
-                            <hr class="my-3">
-                            
+                        <label class="form-check-label" for="save-info">Desole Monsieur {{request.user.agent.prenom}} Mais T'as Pas Le Droit De Modifier Tes Informations</label>
+                        <hr class="my-4">
+                        <hr class="my-3">
                     </div>
                    
 

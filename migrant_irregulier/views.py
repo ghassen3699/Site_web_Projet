@@ -13,17 +13,39 @@ from django.contrib import messages
 @login_required(login_url='login')
 def ajouter_migrant(request) :
     form = forms.MigrantIrregulierForm()
+    
+    
     if request.method == 'POST' :
         form = forms.MigrantIrregulierForm(request.POST)
         if form.is_valid() :
-            form.save()
-            migrant_nom = form.cleaned_data.get('nom')
-            migrant_prenom = form.cleaned_data.get('prenom')
-            messages.success(request,'{} {} est enregistrer'.format(migrant_nom,migrant_prenom))
-            return redirect('ajouter_migrant')
+            
+            nationalite = form.cleaned_data.get('nationalite')
+            if str(nationalite) == 'Tunisie' :
+                cin = form.cleaned_data.get('numero_cin')
+                if models.MigrantIrregulier.objects.filter(numero_cin = cin).count() == 0 :
+                    form.save()
+                    migrant_nom = form.cleaned_data.get('nom')
+                    migrant_prenom = form.cleaned_data.get('prenom')
+                    messages.success(request,'{} {} est enregistrer'.format(migrant_nom,migrant_prenom))
+                    return redirect('ajouter_migrant')
+                else :
+                    messages.success(request,"Le Numero Cin est Existe")
+
+            else :
+                passport = form.cleaned_data.get('numero_passport')
+                if models.MigrantIrregulier.objects.filter(numero_passport = passport).count() == 0 :
+                    form.save()
+                    migrant_nom = form.cleaned_data.get('nom')
+                    migrant_prenom = form.cleaned_data.get('prenom')
+                    messages.success(request,'{} {} est enregistrer'.format(migrant_nom,migrant_prenom))
+                    return redirect('ajouter_migrant')
+                else :
+                    messages.success(request,"Le Numero Passport est Existe")
+
         else :
             messages.success(request,"Il y'a une erreur au niveau de votre formulaire")
             return render(request,'migrant_irregulier/ajouter_migrant.html',{'form':form})
+
     return render(request,'migrant_irregulier/ajouter_migrant.html',{'form':form})
 
 

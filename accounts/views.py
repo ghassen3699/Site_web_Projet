@@ -36,13 +36,12 @@ def ajouter_compte(request) :
                 code_postal = agent_form.cleaned_data.get('code_postal') ,
                 genre = agent_form.cleaned_data.get('genre') ,
                 grade_de_travail_fk = agent_form.cleaned_data.get('grade_de_travail_fk') ,
-                lieu_de_travail_fk = agent_form.cleaned_data.get('lieu_de_travail_fk') ,
                 numero_cin = agent_form.cleaned_data.get('numero_cin') ,
             )
             messages.success(request,'Le Compte Est Creer')
             return redirect('account_home')
         else :
-            messages.success("Il y'a un erreur au niveau de votre formulaire")
+            messages.success(request,"Il y'a un erreur au niveau de votre formulaire")
     return render(request,'accounts/signup.html',{'user_form':user_form,'agent_form':agent_form})
 
 
