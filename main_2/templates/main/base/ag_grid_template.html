@@ -84,6 +84,8 @@
                                 {% if user.is_superuser %}
                                 <li><a class="dropdown-item" href="{% url 'Ajouter_Compte' %}">Ajouter Autre Compte</a></li>
                                 {% endif %}
+                                <li><a class="dropdown-item" href="{% url 'password_reset' %}">Modifier Mots De Passe</a></li>
+
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         </li>

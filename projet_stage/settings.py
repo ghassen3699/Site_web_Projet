@@ -26,6 +26,11 @@ SECRET_KEY = '7xn(tfva3y0a(y05yk&+%)uk=!_e41_e(ik!ez&ck7i^bx#2l_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -174,20 +179,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-
-##################################### tous les fonctions pour envoyer un mail avec django ############################################
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USER_TLS = True
-EMAIL_HOST_USER = 'adresse mail du site web'
-EMAIL_HOST_PASSWORD = " mots de passe de l'adresse mail "
-##################################################################################################################################
-
-
-
-
-
 ######################################### Intialiser les fichiers static pour le design du site web ####################################
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -199,3 +190,16 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "ghassenkhammessi3699@gmail.com"
+EMAIL_HOST_PASSWORD = "gha94414015"
+
+
+#ALLOWED_HOSTS = ['*']

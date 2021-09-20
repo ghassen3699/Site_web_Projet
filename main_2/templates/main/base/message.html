@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 
 
@@ -53,7 +52,7 @@
     
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'account_home' %}">La Garde Nationale</a>
+                <a class="navbar-brand" href="{% url 'index_page' %}">La Garde Nationale</a>
                 <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,34 +63,10 @@
                             <a class="nav-link active" aria-current="page" href="#"></a>
                             
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile_information' %}">Profil</a>
-                            
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'statistique' %}">Les Statistiques</a>
-                        </li>
+                       
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'ajouter_operation' %}">Ajouter Operation</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'ajouter_migrant' %}">Ajouter Migrant</a>
-                        </li>
                         
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item" href="{% url 'modifier_operations' %}">Modifier Operation</a></li>
-                                <li><a class="dropdown-item" href="{% url 'modifier_migrants' %}">Modifier Migrant</a></li>
-                                {% if user.is_superuser %}
-                                <li><a class="dropdown-item" href="{% url 'Ajouter_Compte' %}">Ajouter Autre Compte</a></li>
-                                {% endif %}
-                                <li><a class="dropdown-item" href="{% url 'password_reset' %}">Modifier Mots De Passe</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                     
                 </div>
@@ -99,19 +74,7 @@
         </nav>
 
         
-        <div class="nav-scroller bg-body shadow-sm">
-            <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <p class="nav-link active" aria-current="page">{{request.user.agent.nom}} {{request.user.agent.prenom}}</p>
-                <a class="nav-link" href="{% url 'operation_home' %}">
-                    Les Operations
-                    <span class="badge bg-light text-dark rounded-pill align-text-bottom">{{nombre_des_operations_terminer}}</span>
-                </a>
-                
-                <a class="nav-link" href="{% url 'page_home_migrant' %}">Les Migrants Irreguliers</a>
-                
-            </nav>
-        </div>
-
+        
 
 
 

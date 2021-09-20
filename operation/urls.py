@@ -13,6 +13,6 @@ urlpatterns = [
     path('json_api/',views.json_api,name='json_api'),
     path('liste_modification_operation/',views.liste_modification,name='modifier_operations'),
 
-    path('test/',views.test_agregation,name='test'),
+    path('test/',views.statistique,name='test'),
     
 ]

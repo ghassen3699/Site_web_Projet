@@ -1,0 +1,67 @@
+
+{% extends 'main/base/message.html' %}
+
+
+
+
+
+        
+
+
+{% block header %}
+
+        
+    
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Modifier Mots De Passe</h2>
+                <hr class="my-3">
+            </div>
+
+            <div class="row g-5">
+                <div class="col-md-7 col-lg-11">
+                    <form method = "POST" class="needs-validation" novalidate>
+                        <div class="row g-3">
+
+
+                            <div class="col-sm-6">
+                                {{form.as_p}}
+                                <div class="invalid-feedback">
+                                    Entrer le Mots de Passe Correctement .
+                                </div>
+                            </div>
+
+                            
+
+
+                        </div>
+
+
+                        
+                        
+
+                        <hr class="my-4">
+
+                        
+
+                        
+                        <div class="py-5 text-center">
+                            <button type="submit" class="btn btn-secondary btn-lg text-center">Envoyer</button>
+                            <hr class="my-3">
+                            
+                        </div>
+                        {% csrf_token %}
+                        
+
+                    </form>
+                </div>
+            </div>
+
+            
+            
+        </main>
+
+    </div>
+
+{% endblock %}
